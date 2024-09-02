@@ -1,0 +1,84 @@
+// web page footer
+.page-footer{
+    transition: 0.3s;
+    @media (min-width: 768px) and (max-width: 768px) {
+		// visibility: hidden;
+    }
+    &.content-white{
+        color: $white;
+    }
+    &.content-black{
+        color: $black;
+    }
+    .footer-left, .footer-right{
+        transition: 0.3s;
+        a{
+            color: currentColor;
+        }
+        p{
+            font-size: $text-small;
+            color: currentColor;
+            margin-bottom: 0;
+            .marked{
+                font-weight: bold;
+            }
+        }
+    }
+    .footer-left{
+        position: fixed;
+        left: 16px;
+        z-index: 10;
+        bottom: 8px;
+        @media (min-width: $medium-up) {
+            left: 48px;
+            bottom: 40px + 4px;
+        }
+    }
+    .footer-right{
+        position: fixed;
+        bottom: 8px;
+        right: 16px;
+        z-index: 10;
+        @media (min-width: $medium-up) {
+            right: 48px;
+            bottom: 40px + 4px;
+        }
+        .note{
+            display: inline-block;
+        }
+        .social{
+            display: inline-flex;
+            flex-direction: row;
+            margin-right: -8px;
+            padding-left: 16px;
+            a{
+                padding-left: 8px;
+                padding-right: 8px;
+                display: inline-block;
+                color: currentColor;
+                opacity: 0.5;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            .icon{
+                font-size: 24px;
+            }
+        }
+    }
+    &.scrolled{
+        .footer-left, .footer-right{
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    &.fp-scrolled{
+        opacity: 0;
+        visibility: hidden;
+        @media (min-width: $xlarge-up) {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

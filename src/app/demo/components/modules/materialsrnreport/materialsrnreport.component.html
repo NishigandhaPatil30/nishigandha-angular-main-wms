@@ -1,0 +1,175 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h2 style="text-align: center;">MATERIAL RECIVED FROM  REPORT</h2>
+<div class="print-button-container">
+  <button pButton type="button" icon="pi pi-print" (click)="printTable()"></button>
+</div>
+ 
+<p-table [value]="data"
+[loading]="isLoading"
+responsiveLayout="scroll"
+ #dt1 [rowHover]="true" 
+        [value]="data"
+        dataKey="id"
+        [rows]="5"
+
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,15,30]" 
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="10"
+  [globalFilterFields]="['Id', 'Productcode', 'Brand','Pack','Batch','Manufacturingdates','Expirydate','Quantity','Cases','Weight','Invoicequantity','Storagelocation','UOM','Hsncode','Remark','InwardDate'
+  ,'vehiclenumber','materialrecivedfrom']"
+  >
+
+  <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                  <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+
+                </span>
+            </div>
+        </ng-template>
+   <ng-template pTemplate="header">
+
+            <tr>          
+                 <th pSortableColumn="Id" style="width:20%">Id<p-sortIcon field="Id"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Id" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               <th pSortableColumn="Productcode" style="width:20%">Productcode<p-sortIcon field="Productcode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Brand" style="width:20%">Brand  <p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="Pack" style="width:20%">Pack  <p-sortIcon field="Pack"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Pack" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Batch" style="width:20%">Batch  <p-sortIcon field="Batch"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Batch" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Manufacturingdates" style="width:20%">Manufacturingdates<p-sortIcon field="Manufacturingdates"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Manufacturingdates" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="Expirydate" style="width:20%">Expirydate<p-sortIcon field="Expirydate"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Expirydate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Quantity" style="width:20%">Quantity(Box/Bags)<p-sortIcon field="Quantity"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Quantity" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Cases" style="width:20%">Weight(Kg/Ltr)<p-sortIcon field="Cases"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Cases" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Weight" style="width:20%">Weight(Kg/Ltr)<p-sortIcon field="Weight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Weight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Invoicequantity" style="width:20%">Invoicequantity<p-sortIcon field="Invoicequantity"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Invoicequantity" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Storagelocation" style="width:20%">Storagelocation<p-sortIcon field="Storagelocation"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Storagelocation" display="menu"></p-columnFilter>
+                    </div>
+                </th>            
+                <th pSortableColumn="UOM" style="width:20%">UOM<p-sortIcon field="UOM"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="UOM" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Hsncode" style="width:20%">Hsncode<p-sortIcon field="Hsncode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Hsncode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Remark" style="width:20%">Remark<p-sortIcon field="Remark"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="InwardDate" style="width:20%">InwardDate<p-sortIcon field="InwardDate"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="InwardDate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="vehiclenumber" style="width:20%">vehiclenumber<p-sortIcon field="vehiclenumber"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="vehiclenumber" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="materialrecivedfrom" style="width:20%">Material Recived From<p-sortIcon field="materialrecivedfrom"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="materialrecivedfrom" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+        </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{ rowData.Id }}</td>
+      <td>{{ rowData.Productcode }}</td>
+      <td>{{ rowData.Brand }}</td>
+      <td>{{ rowData.Pack }}</td>
+      <td>{{ rowData.Batch }}</td>
+      <td>{{ rowData.Manufacturingdates }}</td>
+      <td>{{ rowData.Expirydate }}</td>
+      <td>{{ rowData.Quantity }}</td>
+      <td>{{ rowData.Cases }}</td>
+      <td>{{ rowData.Weight }}</td>
+      <td>{{ rowData.Invoicequantity }}</td>
+      <td>{{ rowData.Storagelocation }}</td>
+      <td>{{ rowData.UOM }}</td>
+      <td>{{ rowData.Hsncode }}</td>
+      <td>{{ rowData.Remark }}</td>
+      <td>{{ rowData.InwardDate }}</td>
+      <td>{{ rowData.vehiclenumber }}</td>
+      <td>{{ rowData.materialrecivedfrom }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+</div>
+</div>
+</div>

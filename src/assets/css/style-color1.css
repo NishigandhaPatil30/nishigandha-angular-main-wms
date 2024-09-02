@@ -1,0 +1,574 @@
+/*-------------------
+Sample CSS overwriting main.css rules
+
+[Table of contents]
+    0 General layout
+        0.1 Body
+        0.2 Typography
+    1 Header
+        1.1 menu icon / .menu-icon
+        1.2 menu content / .nav-item 
+    2 Footer
+    3 Forms and buttons / .form-control-*
+    4 Overwritting Background cover of a section / .section .section-cover-full
+[Colors]
+    Green : #61ffa9;
+    Black : #1d1d1d;
+[Typography]
+    font-family :
+    - Serif : "Playfair Display"
+*/
+/* 0 General layout */
+/* 0.1 Body */
+body,
+.body-page {
+  background-color: #ffffff;
+  color: #0d0d0d; }
+
+/* 0.2 Typography : Uncoment What you need*/
+/* page header */
+/* .page-header-alpha .navbar-mainmenu .nav-item{
+    font-family: $geo;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.section-title .title{
+    font-family: $geo;
+} */
+/* title */
+/* .display-title,
+.section-home,
+.media-service h4,
+.section-content h2,
+.section-content h3{
+    font-family: $geo;
+} */
+/* small text */
+/* .page-header-alpha .navbar-topmenu .navbar-nav-menu .nav-item,
+.scrolldown a,
+.btn-outline-white,
+.btn-outline-black,
+.display-subtitle,
+.display-condensed,
+.btn-divided .b-title
+{
+    font-family: $geo;
+} */
+/* 1 Header */
+/* 1.1 menu icon / .menu-icon */
+.menu-icon {
+  border-color: rgba(29, 29, 29, 0.2);
+  background: #ffffff; }
+  .menu-icon:hover {
+    border-color: #1d1d1d; }
+  @media (min-width: 1024px) {
+    .menu-icon {
+      background-color: transparent; } }
+
+.menu-icon .bars .bar1, .menu-icon .bars .bar2, .menu-icon .bars .bar3 {
+  background: #1d1d1d; }
+
+.page-header.content-white .menu-icon {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #ffffff; }
+  .page-header.content-white .menu-icon:hover {
+    border-color: #ffffff; }
+
+.page-header.content-white .navbar-sidebar .nav-item.active .icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: #ffffff; }
+
+.page-header.content-white .navbar-sidebar .nav-item .icon {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff; }
+
+/* 1.2 menu content / .nav-item */
+.page-header-alpha .navbar-mainmenu .nav-item a:hover {
+  color: #3A0075; }
+
+.page-header-alpha .navbar-sidebar .nav-item.active .icon {
+  background: rgba(58, 0, 117, 0.2);
+  color: #3A0075;
+  border-color: #3A0075; }
+
+.page-header-alpha .navbar-sidebar .nav-item .icon {
+  border-color: rgba(29, 29, 29, 0.2);
+  color: #1d1d1d; }
+  .page-header-alpha .navbar-sidebar .nav-item .icon:hover {
+    color: #5d5d5d; }
+
+/* 2 Footer */
+.page-footer.content-white {
+  color: #ffffff; }
+
+/* 3 Forms and buttons / .form-control- */
+.form-control-outline,
+.form-control-line {
+  border-color: #1d1d1d; }
+  .form-control-outline:focus,
+  .form-control-line:focus {
+    border-color: #5d5d5d; }
+
+.form-control-line.form-control-white {
+  border-color: #1d1d1d; }
+
+.form-group label.error,
+.form-container-transparent.form-container-white .form-input label,
+.form-container-transparent .form-input input.form-control-line {
+  color: #1d1d1d; }
+
+/* Buttons / .btn-*/
+.btn-outline-white {
+  color: currentColor;
+  border-color: currentColor; }
+
+.btn-divided {
+  border-color: #3A0075; }
+  .btn-divided .b-subtitle {
+    color: #3A0075; }
+
+/* 4. Overwritting Background cover of a section / .section .section-cover-full */
+@media (max-width: 768px) {
+  .section:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.3); } }
+
+/* Home page */
+.section-home .home-title {
+  color: #3A0075;
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+/* Section title */
+.section-title .title {
+  color: #3A0075;
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+  @media (min-width: 1200px) {
+    .section-title .title {
+      font-size: 7rem; } }
+
+/* section content */
+.section-description:not(.content-white) .section-content .display-title {
+  color: #3A0075;
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+/* section service / media service / .media-service */
+.media-service h4 {
+  color: #3A0075;
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+/* section products */
+/* row product / .row-product */
+.row-product#product-item-1 h3 {
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+.row-product#product-item-2 h3 {
+  background-image: linear-gradient(to right, #e0dbd5, #5bc3ba);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+.row-product#product-item-3 h3 {
+  background-image: linear-gradient(to right, #ce9367, #5bc3ba);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+/* section-contact */
+.section-contact .title-desc .display-title {
+  color: #3A0075;
+  background-image: linear-gradient(to right, #FF9C7C, #3A0075);
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; }
+
+/* 5. Item page */
+.body-item .menu-icon {
+  background: #ffffff; }
+
+.body-item .item-detail {
+  background: #ffffff;
+  color: #1d1d1d; }
+
+/* 4. Animation */
+@media (min-width: 1024px) {
+  .section .anim.translateUp {
+    -webkit-transform: translateY(48px);
+            transform: translateY(48px);
+    transition: 0.3s ease-in-out; }
+  .section.active .anim.translateUp, .section.section-anim .anim.translateUp {
+    transition-delay: 0.3s;
+    -webkit-transform: none;
+            transform: none; }
+  .section .anim.translateDown {
+    -webkit-transform: translateY(-48px);
+            transform: translateY(-48px);
+    transition: 0.3s ease-in-out; }
+  .section.active .anim.translateDown, .section.section-anim .anim.translateDown {
+    transition-delay: 0.3s;
+    -webkit-transform: none;
+            transform: none; } }
+
+@media (min-width: 1024px) {
+  .section .cover-anim {
+    opacity: 0;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    transition: 0.3s; }
+  .section .side-anim {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    transition: 0.3s; }
+  .section .decor-anim::before {
+    opacity: 0;
+    transition: 0.3s;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  .section .decor-anim::after {
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    transition: 0.3s; }
+  .section .anim .anim-wrapper {
+    overflow: hidden;
+    display: block; }
+  .section .anim .anim-1,
+  .section .anim .anim-2,
+  .section .anim .anim-3,
+  .section .anim .anim-4,
+  .section .anim .anim-5 {
+    transition: 0.3s;
+    transition-delay: 0s;
+    position: relative;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+    opacity: 0; }
+  .section .anim .zoomout-1 {
+    transition: 0.6s;
+    transition-delay: 0s;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0; }
+  .section .anim .anim-list .item {
+    opacity: 0;
+    -webkit-transform: translateY(16px);
+            transform: translateY(16px);
+    transition: 0.3s; }
+  .section .anim .fade-2,
+  .section .anim .fade-3,
+  .section .anim .fade-4,
+  .section .anim .fade-1 {
+    opacity: 0;
+    transition: 0.6s;
+    transition-delay: 0s; }
+  .section .anim .anim-blur {
+    -webkit-filter: blur(50px);
+            filter: blur(50px);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0;
+    transition: 0.6s;
+    transition-delay: 0s; }
+  .section.active .cover-anim {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s; }
+  .section.active .side-anim {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s; }
+  .section.active .decor-anim::before, .section.active .decor-anim::after {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s; }
+  .section.active .anim .anim-1, .section.section-anim .anim .anim-1 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.15s;
+    opacity: 1; }
+  .section.active .anim .anim-2, .section.section-anim .anim .anim-2 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.25s;
+    opacity: 1; }
+  .section.active .anim .anim-3, .section.section-anim .anim .anim-3 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.35s;
+    opacity: 1; }
+  .section.active .anim .anim-4, .section.section-anim .anim .anim-4 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.45s; }
+  .section.active .anim .anim-5, .section.section-anim .anim .anim-5 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.6s; }
+  .section.active .anim .anim-list .item:nth-child(1), .section.section-anim .anim .anim-list .item:nth-child(1) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.5s; }
+  .section.active .anim .anim-list .item:nth-child(2), .section.section-anim .anim .anim-list .item:nth-child(2) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.6s; }
+  .section.active .anim .anim-list .item:nth-child(3), .section.section-anim .anim .anim-list .item:nth-child(3) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.7s; }
+  .section.active .anim .anim-list .item:nth-child(4), .section.section-anim .anim .anim-list .item:nth-child(4) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.8s; }
+  .section.active .anim .anim-list .item:nth-child(5), .section.section-anim .anim .anim-list .item:nth-child(5) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.9s; }
+  .section.active .anim .anim-list .item:nth-child(6), .section.section-anim .anim .anim-list .item:nth-child(6) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1s; }
+  .section.active .anim .anim-list .item:nth-child(7), .section.section-anim .anim .anim-list .item:nth-child(7) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.1s; }
+  .section.active .anim .anim-list .item:nth-child(8), .section.section-anim .anim .anim-list .item:nth-child(8) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.2s; }
+  .section.active .anim .anim-list .item:nth-child(9), .section.section-anim .anim .anim-list .item:nth-child(9) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.3s; }
+  .section.active .anim .anim-list .item:nth-child(10), .section.section-anim .anim .anim-list .item:nth-child(10) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.4s; }
+  .section.active .anim .zoomout-1, .section.section-anim .anim .zoomout-1 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s;
+    opacity: 1; }
+  .section.active .anim .fade-1, .section.section-anim .anim .fade-1 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s; }
+  .section.active .anim .fade-2, .section.section-anim .anim .fade-2 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.5s; }
+  .section.active .anim .fade-3, .section.section-anim .anim .fade-3 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.7s; }
+  .section.active .anim .fade-4, .section.section-anim .anim .fade-4 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.9s; }
+  .section.active .anim .anim-blur, .section.section-anim .anim .anim-blur {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.9s; } }
+
+/* slide animation */
+@media (min-width: 768px) {
+  .section .slide .anim .anim-wrapper {
+    overflow: hidden;
+    display: block; }
+  .section .slide .anim .anim-1,
+  .section .slide .anim .anim-2,
+  .section .slide .anim .anim-3,
+  .section .slide .anim .anim-4,
+  .section .slide .anim .anim-5 {
+    transition: 0.3s;
+    transition-delay: 0s;
+    position: relative;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+    opacity: 0; }
+  .section .slide .anim .zoomout-1 {
+    transition: 0.6s;
+    transition-delay: 0s;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0; }
+  .section .slide .anim .anim-list .item {
+    opacity: 0;
+    -webkit-transform: translateY(16px);
+            transform: translateY(16px);
+    transition: 0.3s; }
+  .section .slide .anim .fade-2,
+  .section .slide .anim .fade-3,
+  .section .slide .anim .fade-4,
+  .section .slide .anim .fade-1 {
+    opacity: 0;
+    transition: 0.6s;
+    transition-delay: 0s; }
+  .section .slide .anim .anim-blur {
+    -webkit-filter: blur(50px);
+            filter: blur(50px);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0;
+    transition: 0.6s;
+    transition-delay: 0s; }
+  .section .slide.active .anim .anim-1, .section .slide.section-anim .anim .anim-1 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.15s;
+    opacity: 1; }
+  .section .slide.active .anim .anim-2, .section .slide.section-anim .anim .anim-2 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.25s;
+    opacity: 1; }
+  .section .slide.active .anim .anim-3, .section .slide.section-anim .anim .anim-3 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.35s;
+    opacity: 1; }
+  .section .slide.active .anim .anim-4, .section .slide.section-anim .anim .anim-4 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.45s; }
+  .section .slide.active .anim .anim-5, .section .slide.section-anim .anim .anim-5 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.6s; }
+  .section .slide.active .anim .anim-list .item:nth-child(1), .section .slide.section-anim .anim .anim-list .item:nth-child(1) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.8s; }
+  .section .slide.active .anim .anim-list .item:nth-child(2), .section .slide.section-anim .anim .anim-list .item:nth-child(2) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.95s; }
+  .section .slide.active .anim .anim-list .item:nth-child(3), .section .slide.section-anim .anim .anim-list .item:nth-child(3) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.1s; }
+  .section .slide.active .anim .anim-list .item:nth-child(4), .section .slide.section-anim .anim .anim-list .item:nth-child(4) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.25s; }
+  .section .slide.active .anim .anim-list .item:nth-child(5), .section .slide.section-anim .anim .anim-list .item:nth-child(5) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.4s; }
+  .section .slide.active .anim .anim-list .item:nth-child(6), .section .slide.section-anim .anim .anim-list .item:nth-child(6) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.55s; }
+  .section .slide.active .anim .anim-list .item:nth-child(7), .section .slide.section-anim .anim .anim-list .item:nth-child(7) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.7s; }
+  .section .slide.active .anim .anim-list .item:nth-child(8), .section .slide.section-anim .anim .anim-list .item:nth-child(8) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 1.85s; }
+  .section .slide.active .anim .anim-list .item:nth-child(9), .section .slide.section-anim .anim .anim-list .item:nth-child(9) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 2s; }
+  .section .slide.active .anim .anim-list .item:nth-child(10), .section .slide.section-anim .anim .anim-list .item:nth-child(10) {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 2.15s; }
+  .section .slide.active .anim .zoomout-1, .section .slide.section-anim .anim .zoomout-1 {
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s;
+    opacity: 1; }
+  .section .slide.active .anim .fade-1, .section .slide.section-anim .anim .fade-1 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.3s; }
+  .section .slide.active .anim .fade-2, .section .slide.section-anim .anim .fade-2 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.5s; }
+  .section .slide.active .anim .fade-3, .section .slide.section-anim .anim .fade-3 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.7s; }
+  .section .slide.active .anim .fade-4, .section .slide.section-anim .anim .fade-4 {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.9s; }
+  .section .slide.active .anim .anim-blur, .section .slide.section-anim .anim .anim-blur {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+    transition-delay: 0.9s; } }

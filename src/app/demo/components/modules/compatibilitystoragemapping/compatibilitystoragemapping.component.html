@@ -1,0 +1,67 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h1 style="text-align:center;">COMPATIBILITY STORAGE MAPPING</h1>
+<div>
+  <p-button (click)="addRow()" label="Add Row"></p-button>
+  <br><br>
+  <p-table [value]="tableData">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Grid</th>
+        <th>Product Code</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+      <tr>
+        <td>
+          <p-autoComplete
+            id="gridInput"
+            [(ngModel)]="row.Gridno"
+            name="Grid"
+            [suggestions]="searchResults"
+            (completeMethod)="search($event)"
+            field="Grid"
+            [minLength]="2"
+            placeholder="Search Grid"
+          ></p-autoComplete>
+        </td>
+        <td>
+          <p-autoComplete
+            id="productCodeInput"
+            [(ngModel)]="row.Productcode"
+            name="Productcode"
+            [suggestions]="searchResults"
+            (completeMethod)="search1($event)"
+            field="Productcode"
+            [minLength]="2"
+            placeholder="Search Product code"
+          ></p-autoComplete>
+        </td>
+        <td>
+          <p-button (click)="deleteRow(rowIndex)" label="Delete Row"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <br>
+  <div class="container text-center">
+  <p-button (click)="submitData()" label="Submit" *ngIf="showbutton"></p-button>&nbsp;&nbsp;
+  <p-button mat-raised-button color="primary" (click)="showreport()" >Show Report</p-button>
+</div>
+</div>
+<br>
+<p-toast></p-toast>
+<div class="container text-center">
+  <form [formGroup]="form1">
+    <div class="form-group">
+      <input type="file"   (change)="uploadFile($event)">
+       <p-button mat-raised-button color="primary" (click)="submitImage()">Upload Excel</p-button>
+  
+    </div>
+  </form>
+  </div>
+</div>
+</div>

@@ -1,0 +1,104 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >EDIT CLIENT MASTER</h1>
+  </div>
+  <form [formGroup]="addForm"  class="form">
+    <mat-grid-list cols="1" rowHeight="530px">
+      <mat-grid-tile>
+          <div class="example-container" style="width:100%;" >
+            <mat-form-field appearance="fill" class="width-50">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="User Name" id="Username" name="Username" formControlName="Username">
+            <mat-error *ngIf="addForm.get('Username').hasError('pattern')">Only characters are allowed.</mat-error>
+            <mat-error *ngIf="addForm.get('Username').hasError('required')">Username is required.</mat-error>
+          </mat-form-field>
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="Password" required formControlName="Password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Client Name</mat-label>
+              <input matInput placeholder="Client Name" name="ClientName"  oninput="this. value = this. value. toUpperCase()" formControlName="ClientName" required>
+              <mat-error *ngIf="addForm.get('ClientName').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('ClientName').hasError('required')">Client Name is required.</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Contact Person Name</mat-label>
+              <input matInput placeholder="Contact Person Name" name="ContactPersonName" formControlName="ContactPersonName" required>
+              <mat-error *ngIf="addForm.get('ContactPersonName').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('ContactPersonName').hasError('required')">ContactPersonName is required.</mat-error>
+            </mat-form-field>
+            <br>
+    
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput placeholder="Mobile Number" formControlName="MobileNumber" name="MobileNumber">
+              <mat-error *ngIf="addForm.get('MobileNumber').hasError('required')">Mobile number is required</mat-error>
+              <mat-error *ngIf="addForm.get('MobileNumber').hasError('pattern')">Invalid mobile number</mat-error>
+            </mat-form-field>                                                               
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Mail Id</mat-label>
+              <input matInput type="email" placeholder="Mail Id" name="MailId" formControlName="MailId" required>
+              <mat-error *ngIf="addForm.controls.MailId.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="addForm.controls.MailId.hasError('email')">Invalid email format</mat-error>
+            </mat-form-field>
+            <br>
+             <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Industry</mat-label>
+              <input matInput placeholder="Industry" name="Industry" formControlName="Industry" required>
+              <mat-error *ngIf="addForm.get('Industry').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Industry').hasError('required')">Industry is required.</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Address" name="Address" formControlName="Address" required>
+              <mat-error *ngIf="addForm.get('Address').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Address').hasError('required')">Address is required.</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Pin Code</mat-label>
+              <input matInput placeholder="Pin Code" formControlName="PinCode" name="PinCode" id="PinCode" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>GST Number</mat-label>
+              <input matInput placeholder="E.g. 27AAAAA0781A1AA" formControlName="GSTNumber" name="GSTNumber"  maxlength="15"required >
+            </mat-form-field>
+            <br>
+             <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Billing City</mat-label>
+              <input matInput placeholder="Billing City" formControlName="BillingCity" name="BillingCity" oninput="this. value = this. value. toUpperCase()"  required>
+              <mat-error *ngIf="addForm.get('BillingCity').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('BillingCity').hasError('required')">Address is required.</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Client Location</mat-label>
+              <input matInput placeholder="Client Location" formControlName="ClientLocation" name="ClientLocation" required>
+              <mat-error *ngIf="addForm.get('ClientLocation').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('ClientLocation').hasError('required')">Address is required.</mat-error>
+            </mat-form-field>
+            <p-toast></p-toast>
+             <div class="col-md-9 text-center" > 
+                <p-button (click)="update()">Update</p-button>
+       
+      </div>
+      
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  </div>
+  </div>
+  </div>
+     

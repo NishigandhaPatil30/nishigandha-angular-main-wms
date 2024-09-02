@@ -1,0 +1,162 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card"><div style="text-align: center;">
+    <h1 >PRODUCT MASTER</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="750px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:100%;" >
+          
+          <p-autoComplete
+          placeholder="Client Code"
+          [(ngModel)]="searchText"
+          (completeMethod)="search()"
+          [suggestions]="filteredResults"
+          (onSelect)="selectResult($event)"
+          [minLength]="1"
+          [forceSelection]="true"
+          [style.width.px]="50"
+          name="ClientCode"  formControlName="ClientCode"
+        >
+        
+        </p-autoComplete>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Product Code</mat-label>
+            <input matInput placeholder="Product Code" name="Productcode" formControlName="Productcode">
+            <mat-error *ngIf="addForm.get('Productcode').hasError('pattern')">
+              Please enter a valid numeric code.
+            </mat-error>
+          </mat-form-field>
+          <br>
+         
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Hsn Code</mat-label>
+            <input matInput placeholder="Hsn Code" name="Hsncode"  formControlName="Hsncode">
+            <mat-error *ngIf="addForm.get('Hsncode').hasError('pattern')">
+              Please enter a valid numeric packing size.
+            </mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Brand</mat-label>
+              <input matInput placeholder="Brand" name="Brand" formControlName="Brand">
+              <mat-error *ngIf="addForm.get('Brand').hasError('pattern')">
+                Please enter a valid brand name with uppercase letters only.
+              </mat-error>
+            </mat-form-field>
+     
+          <br>
+  
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Packing Size</mat-label>
+            <input matInput placeholder="Packing Size" name="Packingsize"  (ngModelChange)="calculateResult()" formControlName="Packingsize">
+            <mat-error *ngIf="addForm.get('Packingsize').hasError('pattern')">
+              Please enter a valid numeric packing size.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Sub Unit</mat-label>
+            <input matInput placeholder="Sub Unit" name="Subunit"  (ngModelChange)="calculateResult()"  formControlName="Subunit">
+            <mat-error *ngIf="addForm.get('Subunit').hasError('pattern')">
+              Please enter a valid numeric packing size.
+            </mat-error>
+          </mat-form-field>
+          <br>
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Net Weight</mat-label>
+            <input matInput placeholder="Net Weight" name="Net"  [value]="multiplicationResult" formControlName="Net" readonly>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Gross Weight</mat-label>
+            <input matInput placeholder="Gross Weight" name="Grossweight"  formControlName="Grossweight">
+          </mat-form-field>
+          <br>
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Alise Product Name</mat-label>
+            <input matInput placeholder="Alise Product Name" name="Aliseproductname"  formControlName="Aliseproductname">
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Technical Name</mat-label>
+            <input matInput placeholder="Technical Name" name="Technicalname"  formControlName="Technicalname">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Length(INCH)</mat-label>
+            <input matInput placeholder="Length" name="Productlenght" formControlName="Productlenght" (ngModelChange)="calculateResult1()">
+            <mat-error *ngIf="addForm.get('Productlenght').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Width(INCH)</mat-label>
+            <input matInput placeholder="Width" name="Productwidth" formControlName="Productwidth" (ngModelChange)="calculateResult1()">
+            <mat-error *ngIf="addForm.get('Productwidth').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+          
+          <br>
+          
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Height(INCH)</mat-label>
+            <input matInput placeholder="Height" name="Productheight" formControlName="Productheight" (ngModelChange)="calculateResult1()">
+            <mat-error *ngIf="addForm.get('Productheight').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Cubic(FEET)</mat-label>
+            <input matInput placeholder="Cubic" name="Productcubic"  formControlName="Productcubic" [value]="multiplicationResult1" readonly>
+          </mat-form-field>
+          <br>
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>UOM</mat-label>
+            <mat-select [(value)]="selected" name="UOM"  formControlName="UOM"> 
+      <mat-option>None</mat-option>
+      <mat-option value="Tonne">Tonne</mat-option>
+      <mat-option value="Kilogram">Kilogram</mat-option>
+      <mat-option value="Liters">Liters</mat-option>
+        <mat-option value="Gram">Gram</mat-option>
+         <mat-option value="Miligram">Miligram</mat-option>
+            <mat-option value="Microgram">Microgram</mat-option>
+    </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Packing</mat-label>
+            <input matInput placeholder="Packing" name="Packing"  formControlName="Packing">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Remark</mat-label>
+            <input matInput placeholder="Remark" name="Remark"  formControlName="Remark">
+          </mat-form-field>
+          <div class="col-md-12 text-center">
+            <p-button  (click)="onSubmit()">Submit</p-button >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p-button (click)="showreport()">Show Report</p-button >
+      </div>
+  </div>        
+      
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  <p-toast></p-toast>
+  <br>
+   <div class="container text-center" >
+    <form [formGroup]="form1" >
+      <div class="form-group">
+        <input type="file"   (change)="uploadFile($event)">
+         <p-button   (click)="submitImage()">Upload Excel</p-button>
+    
+      </div>
+    </form>
+          </div>
+          </div>
+          </div>
+          </div>

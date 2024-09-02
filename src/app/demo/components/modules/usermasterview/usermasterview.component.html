@@ -1,0 +1,129 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<mat-form-field style="  font-size: 14px;
+width: 100%;">
+<mat-label>Filter All</mat-label>
+<input  matInput (keyup)="applyFilter($event)" placeholder="Search Username" #input>
+</mat-form-field>
+
+  
+<button pButton type="button" (click)="exporter.exportTable('csv')" label="Export to CSV" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('xlsx')" label="Export to Excel" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('json')" label="Export to JSON" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('txt')" label="Export to Text" class="p-button-primary"></button>
+<br>
+<br>  
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" acceptLabel="Yes" rejectLabel="No"></p-confirmDialog>
+  <p-toast></p-toast>
+<div class="mat-elevation-z8">
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<table mat-table matTableExporter  [dataSource]="dataSource" #exporter="matTableExporter" class="mat-elevation-z8" matSort>
+  <ng-container matColumnDef="Id" sticky>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Username">
+    <th mat-header-cell *matHeaderCellDef> Username </th>
+    <td mat-cell *matCellDef="let element"> {{element.Username}} </td>
+  </ng-container>
+
+     <ng-container matColumnDef="Password">
+    <th mat-header-cell *matHeaderCellDef> Password </th>
+    <td mat-cell *matCellDef="let element"> {{element.Password}} </td>
+  </ng-container>
+  
+ 
+   <ng-container matColumnDef="Firstname">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.Firstname}} </td>
+  </ng-container>
+      
+   <ng-container matColumnDef="Middlename">
+    <th mat-header-cell *matHeaderCellDef> Middle Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.Middlename}} </td>
+  </ng-container>
+ 
+ <ng-container matColumnDef="Lastname">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.Lastname}} </td>
+  </ng-container>
+   <ng-container matColumnDef="Dateofbirth">
+    <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+    <td mat-cell *matCellDef="let element"> {{element.Dateofbirth}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Aadharnumber">
+    <th mat-header-cell *matHeaderCellDef> Aadhar Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.Aadharnumber}} </td>
+  </ng-container>
+    <ng-container matColumnDef="Pannumber">
+    <th mat-header-cell *matHeaderCellDef> Pan Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.Pannumber}} </td>
+  </ng-container>
+    <ng-container matColumnDef="Address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+  </ng-container>
+
+    <ng-container matColumnDef="Contactnumber">
+    <th mat-header-cell *matHeaderCellDef>Contact Number</th>
+    <td mat-cell *matCellDef="let element"> {{element.Contactnumber}} </td>
+  </ng-container>
+        <ng-container matColumnDef="Personalmailid">
+    <th mat-header-cell *matHeaderCellDef>Personalmailid</th>
+    <td mat-cell *matCellDef="let element"> {{element.Personalmailid}} </td>
+  </ng-container>
+       <ng-container matColumnDef="Education">
+    <th mat-header-cell *matHeaderCellDef>Education</th>
+    <td mat-cell *matCellDef="let element"> {{element.Education}} </td>
+  </ng-container>
+           <ng-container matColumnDef="Access">
+    <th mat-header-cell *matHeaderCellDef>Access</th>
+    <td mat-cell *matCellDef="let element"> {{element.Access}} </td>
+  </ng-container>
+           <ng-container matColumnDef="clientcode">
+    <th mat-header-cell *matHeaderCellDef>client Code</th>
+    <td mat-cell *matCellDef="let element"> {{element.clientcode}} </td>
+  </ng-container>
+           <ng-container matColumnDef="WarehouseCode">
+    <th mat-header-cell *matHeaderCellDef>Warehouse Code</th>
+    <td mat-cell *matCellDef="let element"> {{element.WarehouseCode}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let element"  >   
+       <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+              color="primary" (click)="navigateToEdit(element)" aria-label="Example icon button with a delete icon">
+        <mat-icon>launch</mat-icon>
+
+      </button>
+    </td>
+  </ng-container>
+
+<ng-container matColumnDef="Delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element"  >   
+       <button mat-icon-button color="primary" (click)="delete(element)" class="iconbutton"
+              color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" 
+  [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+</mat-paginator>
+
+</div>
+</section>
+</div>
+</div>
+</div>

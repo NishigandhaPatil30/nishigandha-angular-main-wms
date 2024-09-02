@@ -1,0 +1,95 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<mat-form-field style="  font-size: 14px;
+  width: 100%;">
+  <mat-label>Filter All</mat-label>
+  <input  matInput (keyup)="applyFilter($event)" placeholder="Search Username" #input>
+</mat-form-field>
+
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" acceptLabel="Yes" rejectLabel="No"></p-confirmDialog>
+  <p-toast></p-toast>
+<div class="mat-elevation-z8">
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+ 
+<table mat-table matTableExporter  [dataSource]="dataSource"   class="mat-elevation-z8" matSort>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+ <ng-container matColumnDef="Clientcode" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Clientcode </th>
+      <td mat-cell *matCellDef="let element"> {{element.Clientcode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Warehauseno">
+      <th mat-header-cell *matHeaderCellDef> Warehauseno </th>
+      <td mat-cell *matCellDef="let element"> {{element.Warehauseno}} </td>
+    </ng-container>
+       <ng-container matColumnDef="Grid">
+      <th mat-header-cell *matHeaderCellDef> Grid </th>
+      <td mat-cell *matCellDef="let element"> {{element.Grid}} </td>
+    </ng-container>
+   
+     <ng-container matColumnDef="Locationlenght">
+      <th mat-header-cell *matHeaderCellDef> Locationlenght </th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationlenght}} </td>
+    </ng-container>
+        
+     <ng-container matColumnDef="Locationwidth">
+      <th mat-header-cell *matHeaderCellDef> Locationwidth </th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationwidth}} </td>
+    </ng-container>
+   
+   <ng-container matColumnDef="Locationheight">
+      <th mat-header-cell *matHeaderCellDef> Locationheight </th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationheight}} </td>
+    </ng-container>
+     <ng-container matColumnDef="Result">
+      <th mat-header-cell *matHeaderCellDef> Result </th>
+      <td mat-cell *matCellDef="let element"> {{element.Result}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="print">
+      <th mat-header-cell *matHeaderCellDef> print </th>
+  
+      <td mat-cell *matCellDef="let element"><p-button  icon="pi pi-print" (click)="printData(element.Grid)"></p-button ></td>
+    </ng-container>
+    
+
+   <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element" >   
+         <button  mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="danger"  (click)="navigateToEdit(element)" aria-label="Example icon button with a delete icon">
+          <mat-icon>launch</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+ <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element"  >   
+         <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="danger" (click)="delete(element)"  aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+  </table>
+
+  <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" 
+    [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+  </mat-paginator>
+
+</div>
+</section>
+</div>
+</div>
+</div>

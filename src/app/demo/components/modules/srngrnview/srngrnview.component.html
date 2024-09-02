@@ -1,0 +1,67 @@
+<div class="centered-container">
+    <p-panel class="custom-card">
+      <ng-template pTemplate="header">
+        <div class="custom-card-header">SRN Number is successfully generated</div>
+      </ng-template>
+      <div class="custom-card-content">SRN Number: {{ grnno }}</div>
+      <div class="button-container">
+        <p-button label="Print"></p-button>
+      </div>
+    </p-panel>
+  </div>
+
+  
+
+
+<style>
+   .centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.custom-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.custom-card:hover {
+  transform: translateY(-3px);
+}
+
+.custom-card-header {
+  font-size: 34px;
+  padding: 0.7rem 1rem;
+  background-color: #007acc;
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.custom-card-content {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+p-button {
+  margin: 0; /* Remove the default margin */
+  
+}
+
+
+</style>
+  

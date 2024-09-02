@@ -1,0 +1,139 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h1 style="text-align: center;">NEAR EXPIRY REPORT</h1>
+<div class="container">
+  <p-calendar [(ngModel)]="selectedDate" dateFormat="dd-mm-yy" (onSelect)="fetchDataForReferenceDoNo()" placeholder="Please Select a Date"></p-calendar>
+<br><br>
+<br><br>
+<div class="ui-helper-clearfix" style="text-align: left" *ngIf="showgrid">
+  <!-- <button type="button" pButton icon="pi pi-file-o" iconPos="left"  label="CSV" (click)="exportToExcel()" style="margin-right: 0.5em;"></button> -->
+  <button type="button" pButton icon="pi pi-file-excel" iconPos="left" (click)="exportToExcel()" label="EXCEL"  style="margin-right: 0.5em;" class="ui-button-success"></button>
+
+</div>
+<br>
+  <div *ngIf="selectedDate">
+  <p-table [value]="data" [loading]="isLoading" *ngIf="showgrid"
+  #dt1
+   [rowHover]="true"
+        [value]="data"
+        dataKey="id"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,15,30]" 
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="10"
+        [globalFilterFields]="['Productcode', 'Brand', 'Pack', 'Batch', 'Manufacturingdates', 'Expirydate', 'Weight', 'Quantity', 'Invoicequantity', 'Storagelocation', 'UOM', 'Remark']"
+  >
+  <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                  <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+
+                </span>
+            </div>
+        </ng-template>
+   <ng-template pTemplate="header">
+            <tr> 
+                <th pSortableColumn="warehouses" style="width:20%">warehouses<p-sortIcon field="warehouses"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="warehouses" display="menu"></p-columnFilter>
+                    </div>
+                </th>         
+                 <th pSortableColumn="Productcode" style="width:20%">Productcode<p-sortIcon field="Productcode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               <th pSortableColumn="Brand" style="width:20%">Brand<p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Pack" style="width:20%">Pack  <p-sortIcon field="Pack"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Pack" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="Batch" style="width:20%">Batch  <p-sortIcon field="Batch"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Batch" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Manufacturingdates" style="width:20%">Manufacturingdates  <p-sortIcon field="Manufacturingdates"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Manufacturingdates" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Expirydate" style="width:20%">Expirydate<p-sortIcon field="Expirydate"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Expirydate" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Weight" style="width:20%">	Weight
+                    (Kg/Ltr)<p-sortIcon field="Weight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Weight" display="menu"></p-columnFilter>
+                    </div>
+                </th> 
+                <th pSortableColumn="Quantity" style="width:20%">Quantity
+                    (Box/Bags)<p-sortIcon field="Quantity"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Quantity" display="menu"></p-columnFilter>
+                    </div>
+                </th> 
+               
+                <th pSortableColumn="Storagelocation" style="width:20%">Storagelocation<p-sortIcon field="Storagelocation"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Storagelocation" display="menu"></p-columnFilter>
+                    </div>
+                </th> 
+                <th pSortableColumn="UOM" style="width:20%">UOM<p-sortIcon field="UOM"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="UOM" display="menu"></p-columnFilter>
+                    </div>
+                </th> 
+                <th pSortableColumn="Remark" style="width:20%">Remark<p-sortIcon field="Remark"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                    </div>
+                </th> 
+                <th>CSV -Selection only</th>         
+        </ng-template>
+<ng-template pTemplate="body" let-item>
+  <tr>
+    <td>{{ item.warehouses }}</td>
+    <td>{{ item.Productcode }}</td>
+    <td>{{ item.Brand }}</td>
+    <td>{{ item.Pack }}</td>
+    <td>{{ item.Batch }}</td>
+    <td>{{ item.Manufacturingdates }}</td>
+    <td>{{ item.Expirydate }}</td>
+    <td>{{ item.Weight }}</td>
+    <td>{{ item.Quantity }}</td>
+    <td>{{ item.Storagelocation }}</td>
+    <td>{{ item.UOM }}</td>
+    <td>{{ item.Remark }}</td>
+    <td><button type="button" pButton icon="pi pi-file" iconPos="left"   (click)="exportToCSV(item)" style="float:right"></button></td>
+  </tr>
+</ng-template>
+  </p-table>
+</div></div>
+</div>
+</div>
+</div>

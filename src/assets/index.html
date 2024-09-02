@@ -1,0 +1,1282 @@
+<!doctype html>
+<!--
+Website By Miradontsoa / MiVFX
+http://twitter.com/miradontsoa
+http://miradontsoa.com
+-->
+
+<html class="no-js" lang="en">
+
+<head>
+   
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <!-- Page Title Here -->
+  <title>Swatpro - A portfolio / onepage template</title>
+
+  <!-- Meta -->
+  <!-- Page Description Here -->
+  <meta name="description" content="A beautiful and creative portfolio template. It is mobile friend (responsive) and comes with smooth animations">
+
+  <!-- Disable screen scaling-->
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:site" content="@miradontsoa">
+  <meta name="twitter:creator" content="@miradontsoa">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Page Title">
+  <meta name="twitter:description" content="Description of the page">
+  <meta name="twitter:image" content="../../../assets/images/bg-default.jpg">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Facebook Meta -->
+  <meta property="og:url" content="your website url here">
+  <meta property="og:title" content="Page Title">
+  <meta property="og:description" content="Description of the page">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../../../assets/images/bg-default.jpg">
+  <meta property="og:image:secure_url" content="../../../assets/images/bg-default.jpg">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+  <!-- Web fonts and Web Icons -->
+  <link rel="stylesheet" href="./fonts/opensans/stylesheet.css">
+  <link rel="stylesheet" href="./fonts/montserrat/stylesheet.css">
+  <link rel="stylesheet" href="./fonts/roboto/stylesheet.css">
+  <link rel="stylesheet" href="./fonts/playfair/stylesheet.css">
+  <link rel="stylesheet" href="./fonts/ionicons.min.css">
+  <link rel="stylesheet" href="./fonts/font-awesome.min.css">
+
+  <!-- Vendor CSS style -->
+  <link rel="stylesheet" href="./css/pageloader.css">
+
+  <!-- Uncomment below to load individualy vendor CSS -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./js/vendor/swiper.min.css">
+  <link rel="stylesheet" href="./js/vendor/jquery.fullpage.min.css">
+  <link rel="stylesheet" href="./js/vegas/vegas.min.css">
+
+  <!-- Main CSS files -->
+  <link rel="stylesheet" href="./css/main.css">
+
+  <!-- add alt layout here -->
+  <link rel="stylesheet" href="./css/style-default.css">
+
+  <script src="./js/vendor/modernizr-2.7.1.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous"></script>
+
+
+
+<script>
+function submitForm(event) {
+    event.preventDefault(); // prevent default form submission
+
+    console.log('Welcome');
+
+    // Get form data as an object
+    var formData = {
+        name: $("#mes-name").val(),
+        email: $("#mes-email").val(),
+        message: $("#mes-text").val()
+    };
+
+    console.log(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxserver/sendmialcontact.php",
+        data: formData,
+        dataType: "json",
+        success: function (response) {
+            console.log("Response:", response);
+
+            if (response.status === "success") {
+                // Display a success message to the user
+                alert(response.message);
+               window.location.href = 'index.html';
+            } else {
+                // Display an error message to the user for invalid requests
+                alert(response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Error occurred during AJAX request.");
+            console.log("Status:", status);
+            console.log("Error:", error);
+
+            // Display an error message to the user for other errors
+            alert("An unexpected error occurred. Please try again.");
+        }
+    });
+}
+
+</script>
+
+
+<script>
+
+function submitemail(event) {
+    event.preventDefault();
+    console.log('Welcome');
+
+    var formData = {
+        email: $("#reg-email").val()
+    };
+
+    console.log(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxserver/InsertCustEmail.php",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+            console.log("Response:", response);
+
+            if (response.status === "success") {
+                // Display a success message to the user
+                alert(response.message);
+
+            } else {
+                // Display an error message to the user for invalid requests
+                alert(response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log("Error occurred during AJAX request.");
+            console.log("Status:", status);
+            console.log("Error:", error);
+
+            // Display a specific error message for Internal Server Error
+            if (xhr.status === 500) {
+                alert("Internal Server Error. Please try again later.");
+            } else {
+                // Display a generic error message for other errors
+                alert("An unexpected error occurred. Please try again.");
+            }
+        }
+    });
+}
+
+</script>
+
+
+</head>
+
+
+<body id="menu" class="body-page">
+  <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+  <!-- Page Loader : just comment these lines to remove it -->
+  <div class="page-loader" id="page-loader">
+    <div>
+      <p>loading</p>
+    </div>
+  </div>
+
+  <!-- BEGIN OF site header Menu -->
+  <header class="page-header navbar page-header-alpha scrolled-white menu-left logo-center topmenu-right">
+
+    <!-- Begin of menu icon toggler -->
+    <button class="navbar-toggler site-menu-icon" id="navMenuIcon">
+      <!-- Available class : menu-icon-dot / menu-icon-thick /menu-icon-random -->
+      <span class="menu-icon menu-icon-random">
+        <span class="bars">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </span>
+      </span>
+    </button>
+    <!-- End of menu icon toggler -->
+
+    <!-- Begin of logo/brand -->
+    <a class="navbar-brand" href="./#">
+      <span class="logo">
+        <img class="light-logo" src="../../../assets/images/logo_swatpro-removebg-preview.png" alt="Logo">
+      </span>
+    </a>
+    <!-- End of logo/brand -->
+
+    <!-- begin of menu wrapper -->
+    <div class="all-menu-wrapper" id="navbarMenu">
+      <!-- Begin of top menu -->
+      <nav class="navbar-topmenu d-none d-lg-flex">
+        <ul class="navbar-nav navbar-nav-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Logins
+            </a>
+            <div class="dropdown-menu" aria-labelledby="loginDropdown">
+              <a class="dropdown-item" href="/login">WMS Login</a>
+              <a class="dropdown-item" href="https://vtc3pl.in/index.php">TMS Login</a>
+            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="./demo.html">BUY NOW</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End of top menu -->
+
+      <!-- Begin of hamburger mainmenu menu -->
+      <nav class="navbar-mainmenu">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html#home">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./item.html">Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./demo.html">Demo</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End of hamburger mainmenu menu -->
+
+      <!-- Begin of sidebar nav menu params class: text-only / icon-only-->
+      <nav class="navbar-sidebar icon-only">
+        <ul class="navbar-nav" id="qmenu">
+          <li class="nav-item" data-menuanchor="home">
+            <a href="#home">
+              <i class="icon ion-android-home"></i>
+              <span class="txt">Home</span>
+            </a>
+          </li>
+          <li class="nav-item" data-menuanchor="projects">
+            <a href="#projects">
+              <i class="icon ion-android-apps"></i>
+              <span class="txt">Projects</span>
+            </a>
+          </li>
+          <li class="nav-item" data-menuanchor="contact">
+            <a href="#contact">
+              <i class="icon ion-android-mail"></i>
+              <span class="txt">Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End of sidebar nav menu -->
+
+    </div>
+    <!-- end of menu wrapper -->
+
+  </header>
+  <!-- END OF site header Menu-->
+
+  <!-- BEGIN OF page cover -->
+  <div class="hh-cover page-cover">
+    <!-- Cover Background -->
+    <div class="cover-bg bg-img" data-image-src="../../../assets/images/swatpro.jpg"></div>
+
+    <!-- Particles as background - uncomment below to use particles/snow -->
+    <div id="particles-js" class="cover-bg pos-abs full-size bg-color" data-bgcolor="rgba(2, 3, 10, 0.7)"></div>
+  </div>
+  <!--END OF page cover -->
+
+  <!-- BEGIN OF page main content -->
+  <main class="page-main page-fullpage main-anim " id="mainpage">
+
+    <!-- Begin of home section -->
+    <div class="section section-home fullscreen-md fp-auto-height-responsive main-home section-centered"
+    data-section="home">
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- content -->
+        <div class="section-content anim">
+          <div class="row justify-content-center c-wrapper">
+            <div class="col-12 col-lg-12 text-center">
+              <!-- title and description -->
+              <div class="title-desc mb-0">
+                <h1 class="display-4 display-title home-title anim-blur anim-2 mt-4 mb-4">Swat Pro
+                  <span class="lite"></span>
+                </h1>
+                <div class="mb-4">
+                  <p class="anim-3">Systematic Warehouse and Transport Management Products.</p>
+                </div>
+              </div>
+
+              <!-- Action button -->
+              <div class="btns-action anim-3">
+                <a class="btn btn-outline-white btn-round" href="#about-us">
+                  About
+                </a>
+                <a class="btn btn-outline-white btn-round" href="#projects-page-1">
+                  Works
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Learn more about us</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of home section -->
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="about">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center"  >
+          <h5 class="title">About us</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of description section -->
+    <div class="section section-description fp-auto-height-responsive section-about-1"
+    data-section="about-us">
+
+      <div class="section-cover-full bg-img bg-pos-right cover-anim" data-image-src="./img/bg-2.png"></div>
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+
+        <!-- content -->
+        <div class="section-content anim">
+          <div class="row">
+            <div class="col-12 col-md-6 text-left">
+              <!-- title and description -->
+              <div class="title-desc">
+                <h2 class="display-3 display-title anim-2 decor">Design art</h2>
+                <p class="anim-3">With a relentless focus on innovation, our WMS and TMS are engineered to meet the complex demands of modern logistics. We provide robust, user-friendly platforms that integrate seamlessly with various systems, ensuring real-time visibility and control over global logistics operations..</p>
+              </div>
+
+              <!-- Action button -->
+              <div class="btns-action anim-4">
+                <a class="btn btn-outline-white" href="#projects">
+                  <span class="text">Our works</span>
+                  <span class="icon">
+                    <i class="arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Mission</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of description section -->
+    <!-- Begin of description section -->
+    <div class="section section-description fp-auto-height-responsive section-about-2"
+    data-section="mission">
+
+      <div class="section-cover-full bg-img bg-pos-left cover-anim" data-image-src="./img/bg-1.png"></div>
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+
+        <!-- content -->
+        <div class="section-content anim">
+          <div class="row justify-content-md-end">
+            <div class="col-12 col-md-6 text-left pl-lg-0">
+              <!-- title and description -->
+              <div class="title-desc">
+                <h2 class="display-3 display-title anim-2 decor">Help brands</h2>
+                <p class="anim-3">At Swat Pro, we're committed to enhancing efficiency and productivity in logistics. Our high-end technology solutions empower businesses to achieve streamlined, cost-effective, and agile logistics operations on a global scale..</p>
+              </div>
+
+              <!-- Action button -->
+              <div class="btns-action anim-4">
+                <a class="btn btn-outline-white" href="#projects">
+                  <span class="text">Our works</span>
+                  <span class="icon">
+                    <i class="arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of description section -->
+
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="services">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center">
+          <h5 class="title">Services</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of list services/features section -->
+    <div class="section section-list-feature fp-auto-height-responsive " data-section="services-list">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- content -->
+        <div class="section-content anim">
+
+          <!-- service list -->
+          <div class="list-items row">
+            <div class="col-12 col-lg-4">
+              <a class="item media media-service" href="./#">
+                <div class="img">
+                  <i class="icon ion-code-working"></i>
+                </div>
+                <div class="media-body">
+                  <h4 class="">Coding</h4>
+                  <p>"Empowering tomorrow's innovations through cutting-edge, versatile, and adaptive coding solutions for the future of logistics technology."</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-12 col-lg-4">
+              <a class="item media media-service" href="./#">
+                <div class="img">
+                  <i class="icon ion-ios-cog-outline"></i>
+                </div>
+                <div class="media-body">
+                  <h4 class="">Mechanics</h4>
+                  <p>"Revolutionizing logistics with advanced software mechanics, optimizing operations, and enhancing supply chain efficiency for global businesses."</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-12 col-lg-4">
+              <a class="item media media-service" href="./#">
+                <div class="img">
+                  <i class="icon ion-ios-analytics-outline"></i>
+                </div>
+                <div class="media-body">
+                  <h4 class="">Analytics</h4>
+                  <p>"Optimizing logistics through powerful, data-driven software analytics for streamlined operations, efficiency, and informed decision-making."</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- end of service list -->
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of list services/features section -->
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="projects">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center">
+          <h5 class="title">Projects</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of projects/two-column section -->
+    <div class="section section-twoside fp-auto-height-responsive content-white" data-section="projects-page-1">
+      <!-- Begin of a side : left-->
+      <div class="section-side side-left side-anim">
+        <div class="section-cover mask-black bg-img" data-image-src="../../../assets/images/bg-default10.JPG">
+        </div>
+        <div class="section-wrapper">
+          <!-- content -->
+          <div class="section-content anim">
+            <div class="row">
+              <div class="col-12 text-left text-white">
+                <!-- title and description -->
+                <div class="title-desc">
+                  <h2 class="display-3 display-title anim-2 decor">Technology</h2>
+                  <p class="anim-3">“Utilising PHP, Angular, and Flicker API, our project streamlined image management, fostering efficient technological solutions for diverse needs.”</p>
+                </div>
+
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="./gallery.html#project-item">
+                    <span class="text">View Project</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End of a side-->
+
+      <!-- Begin of a side : right-->
+      <div class="section-side side-right side-anim">
+        <div class="section-cover mask-black bg-img" data-image-src="../../../assets/images/img-sample11.jpg">
+        </div>
+        <div class="section-wrapper">
+          <!-- content -->
+          <div class="section-content anim">
+            <div class="row">
+              <div class="col-12 text-left text-white">
+                <!-- title and description -->
+                <div class="title-desc">
+                  <h2 class="display-3 display-title anim-2 decor">Integration</h2>
+                  <p class="anim-3">"Our tech integration harmonised diverse platforms—ERP, SAP, government APIs, 4PL modules, and e-commerce sites—ensuring seamless connectivity and operations."</p>
+                </div>
+
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="./gallery.html#project-item">
+                    <span class="text">View Project</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End of a side-->
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper">
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of projects/two-column section -->
+    <!-- Begin of projects/two-column section -->
+    <div class="section section-twoside fp-auto-height-responsive content-white" data-section="projects-page-2">
+      <!-- Begin of a side : left-->
+      <div class="section-side side-left side-anim">
+        <div class="section-cover bg-img" data-image-src="../../../assets/images/items/img-sample317.jpg">
+        </div>
+        <div class="section-wrapper">
+          <!-- content -->
+          <div class="section-content anim">
+            <div class="row">
+              <div class="col-12 text-left text-white">
+                <!-- title and description -->
+                <div class="title-desc">
+                  <h2 class="display-3 display-title anim-2 decor">Designing
+                    <span class="lite"></span>
+                    <br></h2>
+                  <p class="anim-3">"Crafting a user-friendly, robust UI/UX, our design prioritised intuitive navigation and seamless interactions, enhancing overall user experience satisfaction."</p>
+                </div>
+
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="#project-item">
+                    <span class="text">View Project</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End of a side-->
+
+      <!-- Begin of a side : right-->
+      <div class="section-side side-right side-anim">
+        <div class="section-cover bg-img" data-image-src="../../../assets/images/items/img-sample318.jpg">
+        </div>
+        <div class="section-wrapper">
+          <!-- content -->
+          <div class="section-content anim">
+            <div class="row">
+              <div class="col-12 text-left text-white">
+                <!-- title and description -->
+                <div class="title-desc">
+                  <h2 class="display-3 display-title anim-2 decor">Applications
+                    <span class="lite"></span>
+                    </h2>
+                  <p class="anim-3">"Enabling tech accessibility, our iOS and Android app ensured a user-friendly experience, simplifying technology use for end-users' convenience."</p>
+                </div>
+
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="#project-item">
+                    <span class="text">View Project</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- End of a side-->
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper">
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of projects/two-column section -->
+
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="products">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center">
+          <h5 class="title">Products</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of list products section -->
+    <div class="section section-list-products fp-auto-height " data-section="products-page-1">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- content -->
+        <div class="section-content anim">
+          <!-- title content -->
+          <div class="row">
+            <div class="col-12 col-lg-6 text-left">
+              <!-- title and description -->
+              <div class="title-desc">
+                <h2 class="display-3 display-title anim-1">WMS</h2>
+
+                <h4 class="display-subtitle anim-2" sytle="color:current">(Warehouse Management System)</h4>
+
+                <p class="anim-2">"Discover a highly customizable and robust WMS solution that empowers your business with efficient, tailored warehouse management capabilities."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- decor -->
+          <div class="title-decor"></div>
+
+          <!-- an item -->
+          <div id="product-item-1" class="row no-gutters row-product">
+            <div class="col-12 col-lg-6 order-1 order-lg-1 side-left center-vh">
+              <div class="content-wrapper">
+                <div class="img-frame-normal">
+                  <div class="img-1">
+                    <img class="img" src="../../../assets/images/img-sample813.jpg" alt="Image">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 order-2 order-lg-2 side-right center-vh">
+              <div class="content-wrapper">
+                <div class="title-desc">
+                  <h3 class="display-3 display-title anim-1 decor">TMS</h3>
+                  <h4 class="display-subtitle anim-2">(Transport Management System)</h4>
+                  <p class="anim-2">"Experience a high-end, user-friendly TMS solution delivering predictive capabilities for streamlined and efficient transportation management."</p>
+                </div>
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="#">
+                    <span class="text">Buy now</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- an item -->
+          <div id="product-item-2" class="row no-gutters row-product">
+            <div class="col-12 col-lg-6 order-1 order-lg-2 side-right center-vh">
+              <div class="content-wrapper">
+                <div class="img-frame-normal">
+                  <div class="img-1">
+                    <img class="img" src="../../../assets/images/img-sample914.jpg" alt="Image">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 order-2 order-lg-1 side-left  center-vh">
+              <div class="content-wrapper">
+                <div class="title-desc">
+                  <h3 class="display-3 display-title anim-1 decor">CTM</h3>
+                  <h4 class="display-subtitle anim-2">(Control Tower Management)</h4>
+                  <p class="anim-2">"Gain control with our Logistics Control Tower software, ensuring visibility, efficiency, and optimization throughout your supply chain operations."</p>
+                </div>
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="#">
+                    <span class="text">Buy now</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- an item -->
+          <div id="product-item-3" class="row no-gutters row-product mb-0">
+            <div class="col-12 col-lg-6 order-1 order-lg-1 side-left center-vh">
+              <div class="content-wrapper">
+                <div class="img-frame-normal">
+                  <div class="img-1">
+                    <img class="img" src="../../../assets/images/img-sample1015.jpg" alt="Image">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 order-2 order-lg-2 side-right  center-vh">
+              <div class="content-wrapper">
+                <div class="title-desc">
+                  <h3 class="display-3 display-title anim-1 decor">PMS</h3>
+                  <h4 class="display-subtitle anim-2">(People Management System)</h4>
+                  <p class="anim-2">"Empower organizational control with our advanced People Management Software, offering comprehensive capabilities to streamline and optimize workforce operations."</p>
+                </div>
+                <!-- Action button -->
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="#">
+                    <span class="text">Buy now</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of list products section -->
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="news-event">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center">
+          <h5 class="title">Our Team</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of list grid section -->
+    <div class="section section-list-feature fp-auto-height " data-section="posts">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- content -->
+        <div class="section-content anim">
+          <!-- title content -->
+          <div class="row">
+            <div class="col-12 col-lg-6 text-left">
+              <!-- title and description -->
+              <div class="title-desc">
+                <h2 class="display-3 display-title anim-1">News &amp; Blog</h2>
+                <p class="anim-2">This is just a placeholder text. We help people to achieve brand
+                  awareness throught this template.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- decor -->
+          <div class="title-decor"></div>
+
+          <!-- post list -->
+          <div class="post-list grid-1 grid-lg-2 anim-list">
+            <!-- an item -->
+            <div class="item media media-post">
+              <div class="media-img mask-black">
+                <img class="img img-block" src="../../../assets/images/img-sample318.jpg" alt="Image">
+              </div>
+              <div class="media-body text-white">
+                <div class="title-desc">
+                  <h3 class="display-title anim-2">Vishal Ambadkar</h3>
+                  <h4 class="anim-1 display-subtitle">CEO</h4>
+                  <p class="anim-3">Sasoned logistics expert with over two decades of industry experience, Under his visionary leadership, the company has achieved remarkable growth. He is a firm believer in the power of innovation and technology to revolutionize the logistics sector.</p>
+                </div>
+
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="item.html">
+                    <span class="text">Read More</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- an item -->
+            <div class="item media media-post">
+              <div class="media-img mask-black">
+                <img class="img img-block" src="../../../assets/images/img-sample813.jpg" alt="Image">
+              </div>
+              <div class="media-body text-white">
+                <div class="title-desc">
+                  <h3 class="display-title anim-2">Harshal Ambadkar</h3>
+                  <h4 class="anim-1 display-subtitle">CMO</h4>
+                  <p class="anim-3">Experienced Sales and Marketing manager with a demonstrated history of working in the logistics and supply chain industry. Skilled in Forecasting, Resource Management, Cost Reduction, Risk Analysis, and Supply Chain Operations.</p>
+                </div>
+
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="item.html">
+                    <span class="text">Read More</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- an item -->
+            <div class="item media media-post">
+              <div class="media-img mask-black">
+                <img class="img img-block" src="../../../assets/images/img-sample517.jpg" alt="Image">
+              </div>
+              <div class="media-body text-white">
+                <div class="title-desc">
+                  <h3 class="display-title anim-2">Turbosu Mitra</h3>
+                  <h4 class="anim-1 display-subtitle">VP</h4>
+                  <p class="anim-3">An effective team leader, trainer,motivator and facilitator with fine-tuned analytical, coordination and resource balancing skills, Strong collaborator within functions to develop innovative integrated plans.</p>
+                </div>
+
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="item.html">
+                    <span class="text">Read More</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- an item -->
+            <div class="item media media-post">
+              <div class="media-img mask-black">
+                <img class="img img-block" src="../../../assets/images/img-sample616.jpg" alt="Image">
+              </div>
+              <div class="media-body text-white">
+                <div class="title-desc">
+                  <h3 class="display-title anim-2">Shankar Mane</h3>
+                  <h4 class="anim-1 display-subtitle">AVP</h4>
+                  <p class="anim-3">Experienced Assistant Vice President skilled in Budgeting, Operations Management, Analytical Skills, Customer Service, and Logistics Management. Strong sales professional with passion for road transportation and expertise to handle large level operations.</p>
+                </div>
+
+                <div class="btns-action anim-4">
+                  <a class="btn btn-outline-white" href="item.html">
+                    <span class="text">Read More</span>
+                    <span class="icon">
+                      <i class="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of list grid section -->
+
+    
+
+
+    <!-- Begin of title section -->
+    <div class="section section-description section-title-layout " data-section="contact">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+        <!-- title -->
+        <div class="section-title decor decor-anim text-center">
+          <h5 class="title">Contact</h5>
+        </div>
+
+        <!-- Arrows scroll down/up -->
+        <footer class="section-footer scrolldown">
+          <a class="down">
+            <span class="icon"></span>
+            <span class="txt">Scroll</span>
+          </a>
+        </footer>
+      </div>
+      <!-- End of section wrapper -->
+    </div>
+    <!-- End of title section -->
+    <!-- Begin of contact section -->
+    <div class="section section-contact fp-auto-height-responsive no-slide-arrows " data-section="contact-info">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper  with-margin">
+        <div class="row justify-content-between">
+          <!-- begin of left content -->
+          <div class="col-12 col-lg-7">
+            <!-- content -->
+            <div class="section-content anim text-left">
+              <!-- title and description -->
+              <div class="title-desc">
+                <div class="anim-2">
+                  <p>For questions about our company and products found on our stores.</p>
+                </div>
+                <div class="address-container anim-3">
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                      <h4 class="display-condensed lite">Contact</h4>
+                      
+                      <a href="https://mail.google.com/" target="_blank">Email: info@swatpro.co</a>
+
+                      <div class="icons icons-margin">
+                        <a class="btn-icon" target="_blank" href="https://www.instagram.com/swatpro_technologies/">
+                          <i class="icon fa fa-instagram" ></i>
+                        </a>
+                        <a class="btn-icon" target="_blank" href="https://twitter.com/SwatproLtd">
+                          <i class="icon fa fa-twitter" ></i>
+                        </a>
+                      
+                        <a class="btn-icon" href="https://wa.me/9156586858?text=Hello%20there!" target="_blank">
+                          <i class="icon fa fa-whatsapp" ></i>
+                        </a>
+                        
+                        <a class="btn-icon" target="_blank" href="https://facebook.com/61555333465017">
+                          <i class="icon fa fa-facebook" ></i>
+                        </a>
+                        <a class="btn-icon" target="_blank" href="https://www.linkedin.com/company/swatpro-technologies-pte-ltd/people/?viewAsMember=true">
+                          <i class="icon fa fa-linkedin" ></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                      <h4 class="display-condensed lite">Address</h4>
+                      <p>
+                        Company address
+                        
+                        <br>160 Robinson Road,#14-04 Singapore
+                        <br>Business Federation Center
+                        <br>Singapore (068914)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of left content -->
+
+          <!-- begin of right content -->
+          <div class="col-12 col-lg-4 center-v end-h">
+    <!-- content -->
+    <div class="section-content anim text-left fullwidth autowidth-lg">
+        <div class="message-form">
+            <div class="form-container form-container-card">
+                <!-- Message form container -->
+                <form class="send_message_form message form" method="post" enctype="multipart/form-data" id="message_form">
+                    <div class="form-group name">
+                        <input id="mes-name" name="name" type="text" placeholder="Name" class="form-control form-control-outline thick form-success-clean" required>
+                    </div>
+                    <div class="form-group email">
+                        <input id="mes-email" type="email" placeholder="Email" name="email" class="form-control form-control-outline thick form-success-clean" required>
+                    </div>
+                    <div class="form-group no-border">
+                        <textarea id="mes-text" placeholder="Message ..." name="message" class="form-control form-control-outline thick form-success-clean" required></textarea>
+                        <div>
+                            <p class="message-ok invisible form-text-feedback form-success-visible">Your message has been sent, thank you.</p>
+                        </div>
+                    </div>
+
+                    <div class="btns text-right">
+                        <button id="submit-message" class="btn btn-outline-white btn-round btn-full btn-auto-lg email_b" name="submit_message" onclick="submitForm(event)">
+                            <span class="txt">Send Now</span>
+                            <span class="arrow-icon"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+          <!-- end of right content -->
+        </div>
+
+      </div>
+      <!-- End of section wrapper -->
+
+      <!-- Arrows scroll down/up -->
+      <footer class="section-footer scrolldown">
+        <a class="down">
+          <span class="icon"></span>
+          <span class="txt">Subscribe</span>
+        </a>
+      </footer>
+    </div>
+    <!-- End of contact section -->
+    <!-- Begin of register/login/signin section -->
+    <div class="section section-register " data-section="register">
+
+      <!-- Begin of section wrapper -->
+      <div class="section-wrapper with-margin">
+
+        <!-- content -->
+        <div class="section-content no-anim">
+
+          <div class="row">
+
+            <div class="col-12">
+              <!-- Registration form container-->
+              <form class="send_email_form form-container form-container-transparent form-container-white"
+              method="post" enctype="multipart/form-data">
+                <div class="form-desc">
+                  <p class="invite  anim-3">Don't miss any news via email ! Register email if you agree :</p>
+                </div>
+                <div class="form-input  anim-4">
+                  <div class="row">
+                    <div class="col-12 col-md-8 col-lg-10">
+                      <div class="form-group form-success-gone">
+                        <input id="reg-email" name="email" class="form-control-line form-control-white" type="email"
+                        required placeholder="your@email.address" data-validation-type="email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-2">
+                      <div class="btns-action anim-3 mt-md-0">
+                        <button id="submit-email" name="submit_email" onclick="submitemail(event)" class="btn btn-outline-white btn-full form-success-gone">
+                          <span class="text">Accept</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-0">
+                    <div>
+                      <p class="email-ok invisible form-text-feedback form-success-visible">Your email has been registred, thank you.</p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end of content -->
+      </div>
+      <!-- End of section wrapper -->
+
+    </div>
+    <!-- End of register/login/signin section -->
+
+  </main>
+  <!-- END OF page main content -->
+
+  <!-- BEGIN OF page footer -->
+  <footer id="site-footer" class="page-footer d-none d-lg-block">
+    <!-- Left content -->
+  <!--  <div class="footer-left">
+      <p class="note">Atelieux by
+        <a href="http://highhay.com">
+          <span class="marked">Mivfx</span>
+        </a>
+      </p>
+    </div>-->
+
+    <!-- Right content -->
+    <div class="footer-right">
+      <ul class="social">
+        <li>
+          <a href=" https://facebook.com/61555333465017" target="_blank">
+            <i class="icon fa fa-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/SwatproLtd" target="_blank">
+            <i class="icon fa fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/swatpro_technologies/" target="_blank">
+            <i class="icon fa fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/swatpro-technologies-pte-ltd/people/?viewAsMember=true" target="_blank">
+            <i class="icon fa fa-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/9156586858?text=Hello%20there!" target="_blank">
+            <i class="icon fa fa-whatsapp"></i>
+          </a>
+        </li>
+       
+      </ul>
+    </div>
+  </footer>
+  <!-- END OF site footer -->
+
+  <!-- scripts -->
+  <!-- All Javascript plugins goes here -->
+  <script src="./js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="./js/slick/slick.min.js"></script>
+
+  <!-- All vendor scripts -->
+  <script src="./js/vendor/scrolloverflow.min.js"></script>
+  <script src="./js/vendor/all.js"></script>
+  <script src="./js/particlejs/particles.min.js"></script>
+
+  <!-- Countdown script -->
+  <script src="./js/jquery.downCount.js"></script>
+
+  <!-- Form script -->
+  <script src="./js/form_script.js"></script>
+
+  <!-- Javascript main files -->
+  <script src="./js/main.js"></script>
+
+  <script src="js/particlejs/particles-init.js"></script>
+
+</body>
+
+</html>

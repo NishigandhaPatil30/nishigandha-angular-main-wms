@@ -1,0 +1,21 @@
+.example-container {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+  
+    margin-bottom: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  .text-center {
+    text-align: center;
+}
+  
+@media (max-width: 768px) {
+    .example-container {
+        padding: 20px;
+    }
+    /* You can add more specific styles as needed for mobile layout */
+}

@@ -1,0 +1,139 @@
+<br>
+
+  <div class="container">
+    <div class="title text-center">Registration Here</div>
+    <div class="content">
+      <div class="one">
+          
+          <p-toast></p-toast>
+        <div class="user-details">
+          <div class="input-box">
+            <label for="userName">User Name</label>
+            <input id="userName" type="text" pInputText [(ngModel)]="user.Name" required>
+          </div>
+     
+          
+          <div class="input-box">
+            <label for="confirmPassword">User Password </label>
+    
+            <p-password [(ngModel)]="user.password" [toggleMask]="true"></p-password>
+
+          </div>
+          <div class="input-box">
+            <label for="firstName">First Name</label>
+        <input id="firstName" type="text" pInputText [(ngModel)]="user.firstName" required>
+          </div>
+          <div class="input-box">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" pInputText [(ngModel)]="user.lastName" required>
+          </div>
+         
+        
+          <div class="input-box">
+            <label for="confirmPassword">Confirm Password</label>
+        <p-password [(ngModel)]="user.confirmPassword" [toggleMask]="true"></p-password>
+          </div>
+          <div class="input-box">
+            <label for="email">Email</label>
+        <input id="email" type="email" pInputText [(ngModel)]="user.email" required>
+          </div>
+        
+          <div class="input-box">
+            <label for="mobileNumber">Mobile Number</label>
+        <input id="mobileNumber" type="tel" pInputText [(ngModel)]="user.mobileNumber" required maxlength="10">
+
+          </div>
+         
+          
+          <div class="input-box">
+            <label for="Designation">Designation</label>
+        <input id="Designation" type="tel" pInputText [(ngModel)]="user.Designation" required >
+          </div>
+          <div class="input-box">
+            <label for="dateOfBirth">Date of Birth</label><br>
+            <p-calendar id="dateOfBirth" [(ngModel)]="user.dateOfBirth" [style]="{ 'width.px': 300 }" required></p-calendar>
+
+          </div>
+          <div class="input-box">
+            <label for="gender">Gender</label><br>
+            <p-dropdown id="gender" [(ngModel)]="user.gender" [options]="genders" [style]="{ 'width.px': 300 }"optionLabel="label" optionValue="value" required></p-dropdown>
+          </div>
+ 
+          <div class="input-box">
+            <label for="adharno">Adhar Card Number</label>
+        <input id="adharno" type="tel" pInputText [(ngModel)]="user.adharno" maxlength="12" required  ><br><br>
+        <button pButton type="button" label="SEND OTP" (click)="sendotp(user.adharno)"></button>
+          </div>
+          <div class="input-box">
+            <label for="Designation">Enter OTP</label>
+            <input id="mobileNumber" type="tel" pInputText required maxlength="10" [(ngModel)]="enteredOTP"><br><br>
+          
+            <p *ngIf="showTimer">Timer: {{ remainingTime }} seconds remaining</p>
+          
+            <!-- Your existing HTML content here -->
+          
+            <!-- Display a message when the timer expires with PrimeNG styles -->
+            <p-message *ngIf="timerExpired" severity="error" text="Timer expired! Your custom message here."></p-message>
+          
+            <button pButton type="button" (click)="sendotp2(enteredOTP)" label="OTP VERIFY"></button>
+          </div>
+          <div class="input-box">
+            <label for="panno">Pan Card Number</label>
+        <input id="panno" type="tel" pInputText [(ngModel)]="user.panno" maxlength="10" required><br><br>
+        <button pButton type="button" label="PAN NUMBER VERIFY" (click)="sendotp1(user.panno)"></button>
+          </div>
+          <input type="file" name="file"  (change)="onFileSelected($event)" [(ngModel)]="user.selectedFilePath" />
+          <!-- <img *ngIf="user.selectedFilePath" [src]="user.selectedFilePath" alt="Selected Image" /> -->
+          &nbsp;
+          <form>
+            <span style="color: red; cursor: pointer;" (click)="showDialog()">
+                <i class="pi pi-plus"></i> Add Depot
+            </span>
+            <p-dialog [(visible)]="displayDialog" header="Add Depot">
+                <div>
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" name="Depot" pInputText [(ngModel)]="depot.Depot" />
+                        </div>
+                        <div class="p-field">
+                            <label for="location">Location</label>
+                            <input id="location" type="text" name="location" pInputText [(ngModel)]="depot.Location" />
+                        </div>
+                        <div class="p-field">
+                            <label for="Latitude">Latitude</label>
+                            <input id="capacity" type="number" name="Latitude" pInputText [(ngModel)]="depot.Latitude" />
+                        </div>
+                        <div class="p-field">
+                            <label for="Longitude">Longitude</label>
+                            <input id="type" type="text" name="Longitude" pInputText [(ngModel)]="depot.Longitude" />
+                        </div>
+                    </div>
+                    <!-- Add button -->
+                    <button type="button" pButton icon="pi pi-plus" label="Add" (click)="submitForm()"></button>
+                </div>
+            </p-dialog>
+        </form>
+        <p-dropdown [options]="depots" placeholder="Select a Depot" [(ngModel)]="user.Depot"></p-dropdown>
+        
+        
+        
+        
+
+
+        </div>
+        
+        <div class="input-box">
+  <label for="captcha">Captcha</label>
+  <re-captcha (resolved)="resolved($event)" siteKey="YOUR_RECAPTCHA_SITE_KEY"></re-captcha>
+</div>
+
+
+        <div class="text-center">
+            <button pButton type="button" name='file' label="Register" (change)="onFileSelected($event)" (click)="register()"></button>
+        </div>
+
+    </div>
+
+  </div>
+  </div>

@@ -1,0 +1,79 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1>HSE EQUIPMENT POSITION</h1>
+</div>
+<form [formGroup]="addForm" novalidate class="form">
+    <mat-grid-list cols="1" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="example-container">
+                <label for="gridInput" style="font-size: 17px; ">Near Assign Grid No</label>&nbsp;
+                <p-autoComplete
+                    id="gridInput"
+                    [(ngModel)]="searchTerm"
+                    name="Grid"
+                    formControlName="Grid"
+                    [suggestions]="searchResults"
+                    (completeMethod)="search($event)"
+                    field="Grid"
+                    [minLength]="2"
+                    placeholder="Search Grid"
+                ></p-autoComplete>
+                <br><br>
+                <label style="font-size: 17px;"  for="gridInput">Assets</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="fill" class="width-100"  id="assets" style="width:52%">
+                    <mat-label>Assets</mat-label>
+                    <mat-select [(ngModel)]="Assets" name="Assets" formControlName="Assets">
+                        <mat-option>None</mat-option>
+                        <mat-option value="GATE">GATE</mat-option>
+                        <mat-option value="FIRST AID BOX">FIRST AID BOX</mat-option>
+                        <mat-option value="Fire Extinguisher">FIRE EXTINGUISHER</mat-option>
+                        <mat-option value="Emergency Siren">EMERGENCY SIREN</mat-option>
+                        <mat-option value="Emergency Exit">EMERGENCY EXIT</mat-option>
+                        <mat-option value="LEAKAGE DAMAGE AREA">LEAKAGE DAMAGE AREA</mat-option>
+                        <mat-option value="Origin/Wh Incharge Office">ORIGIN/WH INCHARGE OFFICE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <ng-container *ngIf="Assets === 'GATE'">
+                    <mat-form-field appearance="fill" class="width-100">
+                        <mat-label>Gate Input</mat-label>
+                        <input matInput placeholder="Enter gate details" [(ngModel)]="Gate" name="Gate" formControlName="Gate">
+                    </mat-form-field>
+                </ng-container>
+                <br><br>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="col-md-12 text-center" >
+        <p-button mat-raised-button color="primary" (click)="submit()">Submit</p-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <p-button mat-raised-button color="primary" (click)="show()">Show Report</p-button>
+    </div>
+</form>
+<br>
+<p-toast></p-toast>
+<div class="col-md-12 text-center" >
+    <form [formGroup]="form1" >
+        <div class="form-group">
+            <input type="file" (change)="uploadFile($event)">
+            <p-button mat-raised-button color="primary" (click)="submitImage()">Upload Excel</p-button>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+<style>
+    /* Media query for screens smaller than 768px (typical mobile devices) */
+    @media (max-width: 768px) {
+        .example-container {
+            padding: 20px;
+        }
+        /* You can add more specific styles as needed for mobile layout */
+    }
+    .text-center {
+        text-align: center;
+    }
+</style>

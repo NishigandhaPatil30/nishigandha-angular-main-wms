@@ -1,0 +1,124 @@
+
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+      <div style="text-align: center;">
+    <h1 >EDIT USER MASTER</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+    <mat-grid-list cols="1" rowHeight="700px">
+      <mat-grid-tile>
+          <div class="example-container" style="width:100%;" >
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="User Name" name="Username"  formControlName="Username"  required >
+              <mat-error *ngIf="addForm.get('Username').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Username').hasError('required')">Username is required.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="Password" required formControlName="Password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name" name="Firstname"  oninput="this. value = this. value. toUpperCase()" formControlName="Firstname" required>
+              <mat-error *ngIf="addForm.get('Firstname').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Firstname').hasError('required')">Firstname is required.</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Middle Name</mat-label>
+              <input matInput placeholder="Middle Name" name="Middlename" formControlName="Middlename" required>
+              <mat-error *ngIf="addForm.get('Middlename').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Middlename').hasError('required')">Middlename is required.</mat-error>
+            </mat-form-field>
+            <br>
+    
+             <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name"formControlName="Lastname" name="Lastname" required>
+              <mat-error *ngIf="addForm.get('Lastname').hasError('pattern')">Only characters are allowed.</mat-error>
+              <mat-error *ngIf="addForm.get('Lastname').hasError('required')">Lastname is required.</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Date Of Birth</mat-label>
+              <input matInput type="text" placeholder="Date Of Birth" name="Dateofbirth"formControlName="Dateofbirth" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Aadhar Number</mat-label>
+              <input
+                matInput
+                placeholder="Aadhar Number"
+                name="Aadharnumber"
+                formControlName="Aadharnumber"
+              />
+              <mat-error *ngIf="addForm.get('Aadharnumber').hasError('required')">
+                Aadhar Number is required
+              </mat-error>
+              <mat-error *ngIf="addForm.get('Aadharnumber').hasError('pattern')">
+                Aadhar Number must be 12 digits
+              </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>PAN Number</mat-label>
+              <input matInput placeholder="PAN Number" name="Pannumber" formControlName="Pannumber" required>
+              <mat-error *ngIf="addForm.get('Pannumber').hasError('required')">PAN Number is required</mat-error>
+              <mat-error *ngIf="addForm.get('Pannumber').hasError('pattern')">Invalid PAN Number format</mat-error>
+            </mat-form-field>
+            
+            <br>
+             <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Address" name="Address" formControlName="Address"  required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Contact Number</mat-label>
+              <input matInput placeholder="Contact Number" formControlName="Contactnumber" name="Contactnumber"required>
+              <mat-error *ngIf="addForm.get('Contactnumber').hasError('required')">Contactnumber Number is required</mat-error>
+              <mat-error *ngIf="addForm.get('Contactnumber').hasError('pattern')">Invalid Contactnumber  format</mat-error>
+            </mat-form-field>
+            <br>
+             <mat-form-field appearance="fill" class="width-50">
+              <mat-label>Personal Mail Id</mat-label>
+              <input matInput placeholder="Personal Mail Id" formControlName="Personalmailid" name="Personalmailid"  required>
+              <mat-error *ngIf="addForm.get('Personalmailid').hasError('required')">Personalmailid Number is required</mat-error>
+              <mat-error *ngIf="addForm.get('Personalmailid').hasError('pattern')">Invalid Personalmailid  format</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Education</mat-label>
+              <input matInput placeholder="Education" formControlName="Education" name="Education" required>
+            </mat-form-field>
+             <mat-form-field appearance="fill" class="width-50 ">
+              <mat-label>Access</mat-label>
+              <input matInput placeholder="Access" formControlName="Access" name="Access" required>
+            </mat-form-field>
+             <mat-form-field appearance="fill" class="width-50 ml-4">
+              <mat-label>Client Code</mat-label>
+              <input matInput placeholder="Client Code" formControlName="clientcode" name="clientcode" required>
+            </mat-form-field>
+             <mat-form-field appearance="fill" class="width-50 ">
+              <mat-label>Warehouse Code</mat-label>
+              <input matInput placeholder="Warehouse Code" formControlName="WarehouseCode" name="WarehouseCode" required>
+            </mat-form-field>
+            <p-toast></p-toast>
+             <div class="col-md-9" > 
+        <p-button  (click)="update()">Update</p-button>
+      </div>
+      
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  </div>
+  </div>
+  </div>
+     

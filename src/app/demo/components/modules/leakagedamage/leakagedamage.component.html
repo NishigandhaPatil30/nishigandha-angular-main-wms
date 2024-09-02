@@ -1,0 +1,58 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1>LEAKAGE DAMAGE AREA POSITIONING</h1>
+  </div>
+  <p-toast></p-toast>
+  <form [formGroup]="addForm" class="form">
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="example-container">
+          <label for="gridInput">Grid No</label>&nbsp;&nbsp;
+          <p-autoComplete
+            id="gridInput"
+            [(ngModel)]="searchTerm"
+            name="Grid"
+            formControlName="Grid"
+            [suggestions]="searchResults"
+            (completeMethod)="search($event)"
+            field="Grid"
+            [minLength]="2"
+            placeholder="Search Grid" required
+          ></p-autoComplete>
+          <br><br>
+          <label for="remark">Remark</label>&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="fill" class="width-100" id="assets" style="width:17%">
+            <mat-label>Remark</mat-label>
+            <mat-select [(ngModel)]="Assets" name="Assets" formControlName="Assets" required>
+              <mat-option>None</mat-option>
+              <mat-option value="DAMAGE">DAMAGE</mat-option>
+              <mat-option value="LEAKAGE">LEAKAGE</mat-option>
+              <mat-option value="UNSALABLE">UNSALABLE</mat-option>
+              <mat-option value="SALABLE">SALABLE</mat-option>
+              <mat-option value="QUARANTINE">QUARANTINE</mat-option>
+              <mat-option value="LOOSE">LOOSE</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+    <div class="col-md-12 text-center">
+      <p-button (click)="submit()">Submit</p-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p-button (click)="show()">Show Report</p-button>
+    </div>
+  </form>
+  <br>
+  <div class="container text-center">
+    <form [formGroup]="form1" >
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+        <p-button (click)="submitImage()">Upload Excel</p-button>
+      </div>
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>

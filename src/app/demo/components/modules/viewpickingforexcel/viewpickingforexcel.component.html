@@ -1,0 +1,166 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h1 style="text-align: center;">VIEW PICKING SLIP</h1><br>
+<div class="input-container">
+  <input type="text" pInputText [(ngModel)]="referenceDoNo" placeholder="Enter Reference Do Number">&nbsp;&nbsp;&nbsp;&nbsp;
+  <button pButton label="Fetch Data" (click)="fetchDataForReferenceDoNo()"></button>
+</div>
+<br>
+<div *ngIf="isLoading" style="text-align: center;">
+  <i class="pi pi-spin pi-spinner" style="font-size: 3rem;"></i>
+  <p>Loading...</p>
+</div>
+
+    <p-table  *ngIf="data.length > 0"
+        #dt1  
+          [rowHover]="true"
+        [value]="data"
+        dataKey="id"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,15,30]" 
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="10"
+        [globalFilterFields]="['Id', 'SAPPartyCode','ReferenceDoNo', 'ConsigneeName','ProductCode','Brand','DeliveryLocation','RouteNo','Gateno','Batch','Quantity','Pack','Storagelocation','Pickingslip']"
+        >
+ <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                  <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+          
+                 <th pSortableColumn="Id" style="width:20%">Id <p-sortIcon field="Id"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Id" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="SAPPartyCode" style="width:20%">SAPPartyCode <p-sortIcon field="SAPPartyCode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="SAPPartyCode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               <th pSortableColumn="ReferenceDoNo" style="width:20%">ReferenceDoNo<p-sortIcon field="ReferenceDoNo"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="ReferenceDoNo" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="ConsigneeName" style="width:20%">ConsigneeName <p-sortIcon field="ConsigneeName"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="ConsigneeName" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="ProductCode" style="width:20%">ProductCode <p-sortIcon field="ProductCode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="ProductCode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Brand" style="width:20%">Brand <p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="DeliveryLocation" style="width:20%">DeliveryLocation <p-sortIcon field="DeliveryLocation"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="DeliveryLocation" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="RouteNo" style="width:20%">RouteNo <p-sortIcon field="RouteNo"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="RouteNo" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Gateno" style="width:20%">Gateno <p-sortIcon field="Gateno"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Gateno" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Batch" style="width:20%">Batch <p-sortIcon field="Batch"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Batch" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Quantity" style="width:20%">Quantity <p-sortIcon field="Quantity"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Quantity" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               
+                <th pSortableColumn="Pack" style="width:20%">Pack <p-sortIcon field="Pack"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Pack" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Storagelocation" style="width:20%">Storagelocation <p-sortIcon field="Storagelocation"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Storagelocation" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Pickingslip" style="width:20%">Pickingslip <p-sortIcon field="Pickingslip"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Pickingslip" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+        </ng-template>
+         <ng-template pTemplate="body" let-rowData>
+           <tr>
+      <td>{{ rowData.Id }}</td>
+      <td>{{ rowData.SAPPartyCode }}</td>
+      <td>{{ rowData.ConcatenatedReferenceDoNo }}</td>
+      <td>{{ rowData.ConsigneeName }}</td>
+       <td>{{ rowData.ProductCode }}</td>
+      <td>{{ rowData.Brand }}</td>
+      <td>{{ rowData.DeliveryLocation }}</td>
+      <td>{{ rowData.RouteNo }}</td>
+      <td>{{ rowData.Gateno }}</td>
+      <td>{{ rowData.Batch }}</td>
+      <td>{{ rowData.Quantity }}</td>
+      <td>{{ rowData.Pack }}</td>
+      <td>{{ rowData.Storagelocation }}</td>
+      <td>{{ rowData.Pickingslip }}</td>
+    </tr>                            
+        </ng-template>                                                                                                                                                     
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No Records found.</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+  <!-- Print buttons for individual rows -->
+  <div *ngIf="data.length > 0" class="col-md-12" style="top: 20px;justify-content: center;">
+    <div>
+      <p-button  (click)="printStickers(data[0].Pickingslip, data[0].Quantity)">Picking Sticker Print</p-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p-button  color="primary" *ngIf="showPrintButton" (click)="downloadPrint()">Picking Slip Print</p-button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+  
+  
+
+

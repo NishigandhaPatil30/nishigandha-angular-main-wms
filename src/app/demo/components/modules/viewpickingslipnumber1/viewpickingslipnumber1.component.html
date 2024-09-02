@@ -1,0 +1,103 @@
+<div class="container" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; padding: 20px;">
+    <h1 style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">View Picking Slip Number</h1>
+    <div style="text-align: center;">
+        <h4 style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">Successfully Generated Picking Slips:-</h4>
+        <h1 style="color: green;"><b>{{ pickingslip }}</b></h1>
+    </div>
+ 
+<!-- Your component's HTML file -->
+<div style="text-align: center;">
+  <p-table [value]="sapPartyCodeArray" [rows]="20" [rowsPerPageOptions]="[200,500,1000,5000]" [paginator]="true" [pageLinks]="3">
+    <ng-template pTemplate="header">
+      <tr style="text-align: center;">
+        <th style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">Sap Party Code</th>
+        <th style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">ReferenceDoNo</th>
+        <th style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">Picking Slip</th>
+        <th style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">Action</th>
+        <th><input type="checkbox" [(ngModel)]="selectAllCheckboxes" (change)="selectAllCheckboxesChanged()"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sapPartyCode let-pickingslip let-i="rowIndex">
+      <tr *ngIf="isFirstSapPartyCode(sapPartyCodeArray[i], i)">
+        <td style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+          {{ sapPartyCode }}
+        </td>
+        <td style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+          <ng-container *ngIf="groupedReferenceDoNo[sapPartyCodeArray[i]].length > 2">
+            <ng-container *ngIf="showMore[sapPartyCodeArray[i]]">
+              {{ groupedReferenceDoNo[sapPartyCodeArray[i]].join(', ') }}
+              <span (click)="toggleShowMore(sapPartyCodeArray[i])" style="color: blue;">Show less</span>
+            </ng-container>
+            <ng-container *ngIf="!showMore[sapPartyCodeArray[i]]">
+              {{ groupedReferenceDoNo[sapPartyCodeArray[i]].slice(0, 2).join(', ') }}
+              <span (click)="toggleShowMore(sapPartyCodeArray[i])" style="color: blue;">Show more</span>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="groupedReferenceDoNo[sapPartyCodeArray[i]].length <= 2">
+            {{ groupedReferenceDoNo[sapPartyCodeArray[i]].join(', ') }}
+          </ng-container>
+        </td>
+        
+        <td style="color: black; font-weight: bold; font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+          <ng-container *ngIf="groupedReferenceDoNo[sapPartyCodeArray[i]].length > 2">
+              <ng-container *ngIf="showMore[sapPartyCodeArray[i]]">
+                  {{ (removeDuplicates(pickingslipArray.slice(i, i + groupedReferenceDoNo[sapPartyCodeArray[i]].length))).join(', ') }}
+                  <span (click)="toggleShowMore(sapPartyCodeArray[i])" style="color: blue;">Show less</span>
+              </ng-container>
+              <ng-container *ngIf="!showMore[sapPartyCodeArray[i]]">
+                  {{ (removeDuplicates(pickingslipArray.slice(i, i + 2))).join(', ') }}
+              </ng-container>
+          </ng-container>
+          <ng-container *ngIf="groupedReferenceDoNo[sapPartyCodeArray[i]].length <= 2">
+              {{ (removeDuplicates(pickingslipArray.slice(i, i + groupedReferenceDoNo[sapPartyCodeArray[i]].length))).join(', ') }}
+          </ng-container>
+      </td>
+      
+        
+        
+        
+        
+        
+        <td>
+          <ng-container *ngIf="isFirstSapPartyCode(sapPartyCodeArray[i], i)">
+            <div style="display: flex; align-items: center;">
+              <p-button class="p-button" (click)="downloadPrint(sapPartyCodeArray[i])" style="margin-right: 10px;width: 200px;">Picking Slip Print</p-button>
+              <p-button class="p-button" (click)="stikerprint(pickingslipArray.slice(i, i + groupedReferenceDoNo[sapPartyCodeArray[i]].length).join(', '))" >Picking Sticker Print</p-button>
+            </div>
+          </ng-container>
+        </td>
+        
+        <td *ngIf="isFirstSapPartyCode(sapPartyCodeArray[i], i)">
+          <input type="checkbox" [(ngModel)]="selectAllCheckboxes">
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div *ngIf="showButtons">
+    <p-button (click)="stikerprint1()">All sticker print</p-button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p-button (click)="downloadPrint1()">All picking slip print</p-button>
+  </div>
+</div>
+
+
+    
+      
+      
+
+      
+      
+
+<style>
+    /* Add mobile-responsive styles here */
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+    }
+</style>

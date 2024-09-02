@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .date-picker-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 5px;
+   
+    font-size: 16px;
+  }
+
+  .p-calendar {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: 768px) {
+    /* Apply styles for screens wider than 768px (tablets and desktops) */
+    .date-picker-container {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    .p-calendar {
+      width: auto;
+      margin-bottom: 0;
+    }
+  }

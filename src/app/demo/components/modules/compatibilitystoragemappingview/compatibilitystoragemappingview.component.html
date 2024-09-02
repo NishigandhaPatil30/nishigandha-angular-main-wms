@@ -1,0 +1,106 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h2 style="text-align: center;">COMPATIBILITY STORAGE MAPPING REPORT</h2>
+<div class="print-button-container">
+  <button pButton type="button" icon="pi pi-print" (click)="printTable()"></button>&nbsp;&nbsp;&nbsp;
+  <button type="button" pButton icon="pi pi-file-excel" iconPos="left" (click)="exportToExcel()" label="EXCEL"  class="ui-button-success"></button>
+</div>
+
+<br>
+<p-table [value]="data"
+  [loading]="isLoading"
+  #dt1 [rowHover]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[5,10,15,30]"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [filterDelay]="10"
+  [globalFilterFields]="['Id', 'GridNo', 'Productcode','Groupcode']">
+
+
+  <ng-template pTemplate="caption">
+    <p-toast></p-toast>
+    <div class="flex">
+      <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+      </span>
+    </div>
+  </ng-template>
+  
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="Id" style="width:20%">Id<p-sortIcon field="Id"></p-sortIcon>
+        <div class="flex align-items-center">
+          <p-columnFilter type="text" field="Id" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="GridNo" style="width:20%">GridNo<p-sortIcon field="GridNo"></p-sortIcon>
+        <div class="flex align-items-center">
+          <p-columnFilter type="text" field="GridNo" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="Productcode" style="width:20%">Productcode  <p-sortIcon field="Productcode"></p-sortIcon>
+        <div class="flex align-items-center">
+          <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="Groupcode" style="width:20%">Groupcode  <p-sortIcon field="Groupcode"></p-sortIcon>
+        <div class="flex align-items-center">
+          <p-columnFilter type="text" field="Groupcode" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th>Edit</th>
+      <th  *ngIf="showgrid">Save</th>
+      <th  *ngIf="showgrid">Cancle</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td>
+        <ng-container *ngIf="!rowData.isEditing; else editingTemplate1">
+          {{ rowData.Id }} 
+        </ng-container>
+        <ng-template #editingTemplate1>
+          <input pInputText type="text" [(ngModel)]="rowData.Id" />
+        </ng-template>
+      </td>
+        <td>
+          <ng-container *ngIf="!rowData.isEditing; else editingTemplate2">
+            {{ rowData.GridNo }} 
+          </ng-container>
+          <ng-template #editingTemplate2>
+            <input pInputText type="text" [(ngModel)]="rowData.GridNo" />
+          </ng-template>
+        </td>
+      <td>
+      <ng-container *ngIf="!rowData.isEditing; else editingTemplate">
+        {{ rowData.Productcode }} 
+      </ng-container>
+      <ng-template #editingTemplate>
+        <input pInputText type="text" [(ngModel)]="rowData.Productcode" />
+      </ng-template>
+    </td>
+      
+      <td>
+        <ng-container *ngIf="!rowData.isEditing; else editingTemplate3">
+          {{ rowData.Groupcode }} 
+        </ng-container>
+        <ng-template #editingTemplate3>
+          <input pInputText type="text" [(ngModel)]="rowData.Groupcode" />
+        </ng-template>
+      </td>
+      <td ><button pButton type="button" icon="pi pi-pencil" (click)="editProductCode(rowData)"></button></td>
+      <td  *ngIf="showgrid"><button pButton  icon="pi pi-check" class="p-button-success" (click)="saveProductCode(rowData)"></button></td>
+      <td  *ngIf="showgrid">  <button pButton  icon="pi pi-times" class="p-button-danger" (click)="cancelEdit(rowData)" ></button></td>
+    </tr>
+  </ng-template>
+
+</p-table>
+</div>
+</div>
+</div>

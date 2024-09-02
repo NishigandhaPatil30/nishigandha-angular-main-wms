@@ -1,0 +1,104 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >LOCATION MASTER</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:100%;" >
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Location Name</mat-label>
+            <input matInput placeholder="LocationName" name="LocationName"  formControlName="LocationName"  oninput="this. value = this. value. toUpperCase()" required >
+            <mat-error *ngIf="addForm.get('LocationName').hasError('pattern')">Only characters are allowed.</mat-error>
+            <mat-error *ngIf="addForm.get('LocationName').hasError('required')">LocationName is required.</mat-error>
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+             <mat-label>Reporting To</mat-label>
+             <mat-select [(value)]="selected" name="ReportingTo" formControlName="ReportingTo">
+              <input matInput placeholder="ReportingTo"  name="ReportingTo" formControlName="ReportingTo">
+      <mat-option>None</mat-option>
+      <mat-option value="Rehaeu">Rehaeu</mat-option>
+     
+    </mat-select>
+  </mat-form-field>
+    
+          <br>
+         
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Location Code</mat-label>
+            <input matInput placeholder="Location Code" placeholder="Location Code"  formControlName="LocationCode" name="LocationCode"  oninput="this. value = this. value. toUpperCase()" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Pin Code</mat-label>
+            <input matInput placeholder="Pin Code" name="PinCode"  formControlName="PinCode" maxlength="6" required>
+          </mat-form-field>
+          <br>
+  
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>State</mat-label>
+          <mat-select [(value)]="selected" name="State" formControlName="State">
+      <mat-option>None</mat-option>
+      <mat-option value="Rehaeu">Rehaeu</mat-option>
+     
+    </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="City" name="City" formControlName="City" ninput="this. value = this. value. toUpperCase()" required>
+            <mat-error *ngIf="addForm.get('City').hasError('pattern')">Only characters are allowed.</mat-error>
+            <mat-error *ngIf="addForm.get('City').hasError('required')">City is required.</mat-error>
+          </mat-form-field>
+          <br>
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" formControlName="Address"  name="Address" required>
+  
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Mobile No. </mat-label>
+            <input matInput placeholder="Mobile No." name="MobileNo" formControlName="MobileNo" required>
+            <mat-error *ngIf="addForm.get('MobileNo').hasError('required')">Mobile number is required</mat-error>
+            <mat-error *ngIf="addForm.get('MobileNo').hasError('pattern')">Invalid mobile number</mat-error>
+          </mat-form-field>
+          <br>
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Email ID</mat-label>
+            <input matInput placeholder="Email ID" name="EmailID" formControlName="EmailID" required>
+            <mat-error *ngIf="addForm.get('EmailID').hasError('required')">Mobile number is required</mat-error>
+            <mat-error *ngIf="addForm.get('EmailID').hasError('pattern')">Invalid mobile number</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Zone</mat-label>
+            <input matInput placeholder="Zone" name="Zone" placeholder="Zone" formControlName="Zone">
+          </mat-form-field>
+          <p-toast></p-toast>
+          <div class="col-md-12 text-center">
+            <p-button  (click)="onSubmit()">Submit</p-button >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p-button (click)="showreport()">Show Report</p-button >
+          </div>
+        </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+       
+        </form>
+    
+         <div class="container text-center" >
+    <form [formGroup]="form1">
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+        <button pButton type="button" (click)="submitImage()">Upload Excel</button>
+    
+      </div>
+    </form>
+          </div>
+          </div>
+          </div>
+          </div>

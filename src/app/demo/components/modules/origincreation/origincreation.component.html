@@ -1,0 +1,35 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >ORIGIN CREATION</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="200px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:200%;    text-align: center;" >
+          <mat-form-field appearance="fill" class="width-50 ml-5">
+            <mat-label>Origin Name</mat-label>
+            <input matInput placeholder="Origin Name" name="originname"  formControlName="originname"  required >
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50 ml-5">
+            <mat-label>Grid No</mat-label>
+            <input matInput placeholder="Grid No" name="Gridno"  formControlName="Gridno" required >
+          </mat-form-field>
+      
+          <p-toast></p-toast>
+             <div class="col-md-12" > 
+        <p-button (click)="onSubmit()">Submit</p-button>
+  
+      </div>
+      
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  </div>
+  </div>
+  </div>
+     

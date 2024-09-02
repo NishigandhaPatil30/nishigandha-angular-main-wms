@@ -1,0 +1,68 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h2 style="text-align: center;">LEAKAGE DAMAGE REPORT</h2>
+<div class="print-button-container">
+  <button pButton type="button" icon="pi pi-print" (click)="printTable()"></button>
+</div>
+ 
+<p-table [value]="data"
+[loading]="isLoading"
+ #dt1 [rowHover]="true" 
+        [value]="data"
+        dataKey="id"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,15,30]" 
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="10"
+  [globalFilterFields]="['Id', 'Gridno', 'Remark']"
+  >
+
+  <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                  <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+
+                </span>
+            </div>
+        </ng-template>
+   <ng-template pTemplate="header">
+
+            <tr>          
+                 <th pSortableColumn="Id" style="width:20%">Id<p-sortIcon field="Id"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Id" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               <th pSortableColumn="Gridno" style="width:20%">Gridno<p-sortIcon field="Gridno"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Gridno" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Remark" style="width:20%">Remark  <p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ 
+        </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{ rowData.Id }}</td>
+      <td>{{ rowData.Gridno }}</td>
+      <td>{{ rowData.Remark }}</td>
+     
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+</div>
+</div>

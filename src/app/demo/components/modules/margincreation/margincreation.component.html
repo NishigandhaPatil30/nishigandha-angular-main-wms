@@ -1,0 +1,63 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >MARGIN CREATION</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="400px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:100%;    text-align: center;" >
+          <label for="gridInput" style="    margin-left: -21rem;"> Grid:</label>
+          &nbsp;  &nbsp;
+          <p-autoComplete 
+            id="gridInput"
+            [(ngModel)]="searchTerm" 
+            name="Grid"   
+            formControlName="Grid"
+            [suggestions]="searchResults" 
+            (completeMethod)="search($event)" 
+            field="Grid"
+            [minLength]="2"
+            placeholder="Search Grid" 
+            (ngModelChange)="getProductBrand()"
+            (onSelect)="onSelectBrand($event)"
+          ></p-autoComplete>
+          <br>
+         <br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Result</mat-label>
+            <input matInput placeholder="Result" name="Result"  [(ngModel)]="Result"  formControlName="Result" (change)="calculateTotalAvailable()" required readonly>
+          </mat-form-field>
+      <br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Percentage To Reduce</mat-label>
+            <input matInput placeholder="Percentage To Reduce" name="Margin" formControlName="Margin" (change)="calculateTotalAvailable()"required>
+               <mat-error *ngIf="addForm.get('Margin').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+      
+  <br>
+           <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Total Available</mat-label>
+            <input matInput placeholder="Total Available"formControlName="TotalAvailable" name="TotalAvailable" required readonly>
+          </mat-form-field>
+           
+          <p-toast></p-toast>
+  
+             <div class="col-md-9" > 
+        <p-button  (click)="update()">Submit</p-button>
+
+      </div>
+      
+  
+            
+  
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  </div>
+  </div>
+  </div>
+     

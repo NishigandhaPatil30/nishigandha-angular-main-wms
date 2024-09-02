@@ -1,0 +1,117 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >ROUTE MASTER</h1>
+  </div>
+  
+  <div class="container">
+    <div class="panel-group" >
+      <div class="panel panel-primary">
+          <div class="panel-body">
+            
+              <table class="table table-bordered">
+              <thead class="text text-primary">
+                    <tr>
+                        <th>SAP Party Code</th>
+                        <th>Consignee Name</th>
+                         <th>Status</th>
+                          <th>Delivery Location</th>
+                           <th>SequenceNo</th>
+                            <th>Region</th>
+                             <th>THCDepot</th>
+                              <th>RouteNo</th>
+                               <th>Kilometer</th>
+                                <th>Adress</th>
+                                 <th>Tat</th>
+                                  <th>Slab1</th>
+                                   <th>Slab2</th>
+                                    <th>Slab3</th>
+                                     <th>Slab4</th>
+  
+                           
+                                <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of rows; let i = index;">
+                       <td>
+                         <input [(ngModel)]="rows[i].SAPPartyCode"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].ConsigneeName"   class="form-control" type="text" />
+                       </td>
+                     <td>
+                         <input [(ngModel)]="rows[i].Status"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].DeliveryLocation"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].SequenceNo"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Region"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].THCDepot"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].RouteNo"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Kilometer"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Adress"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Tat"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Slab1"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Slab2"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Slab3"   class="form-control" type="text" />
+                       </td>
+                       <td>
+                         <input [(ngModel)]="rows[i].Slab4"   class="form-control" type="text" />
+                       </td>                     
+                       <td><p-button (click)="addRow()" class="btn btn-primary pull-right" style="cursor: pointer;">Add</p-button></td>
+                       <td><p-button class="btn btn-danger" (click)="deleteRow(i)" style='cursor: pointer;'>Remove</p-button></td>
+                   </tr>
+               </tbody>
+              </table>
+              
+               
+          </div>
+      </div>
+      </div>
+      <div class="col-md-12 text-center" >
+        <p-button  (click)="submit()">Submit</p-button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <p-button  (click)="showreport()">Show Report</p-button>
+      </div>
+  </div>
+
+  <br>
+  <p-toast></p-toast>
+              <div class="container text-center">
+    <form [formGroup]="form1" (ngSubmit)="submitImage()">
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+         <p-button (click)="submitImage()">Upload Excel</p-button>
+    
+      </div>
+    </form>
+          </div>
+          </div>
+          </div>
+          </div>
+  
+  
+  
+  

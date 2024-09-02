@@ -1,0 +1,182 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1>BATCH WISE STOCK</h1>
+  </div>
+  <label for="gridInput" style="font-size: 17px;    margin-left: 32rem;
+         ">Batch Wise Stock</label>&nbsp;
+            <p-autoComplete
+              id="gridInput"
+              [(ngModel)]="searchTerm"
+              name="Batch"
+              formControlName="Batch"
+              [suggestions]="searchResults"
+              (completeMethod)="search($event)"
+              field="Batch"
+              [minLength]="1"
+              placeholder="Search Productcode"
+            (onSelect)="fetchDataForReferenceDoNo($event,searchResults)"
+            ></p-autoComplete>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <br><br>
+            <div class="ui-helper-clearfix" style="text-align: left" *ngIf="dataFetched">
+              <button type="button" pButton icon="pi pi-file-o" iconPos="left"  label="CSV" (click)="exportToExcel()" style="margin-right: 0.5em;"></button>
+              <button type="button" pButton icon="pi pi-file-excel" iconPos="left" (click)="exportToExcel()" label="EXCEL"  style="margin-right: 0.5em;" class="ui-button-success"></button>
+            
+            </div>
+            <br>
+            <div *ngIf="dataFetched">
+                <p-table [value]="data" 
+            [loading]="isLoading"
+             #dt1 [rowHover]="true"
+                    [value]="data"
+                    dataKey="id"
+                    [rows]="5"
+                    [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[5,10,15,30]" 
+                    [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [filterDelay]="10"
+              [globalFilterFields]="['Productcode', 'Brand', 'Pack','j','Manufacturingdates','Expirydate','r','UOM','Invoicequantity','Hsncode','Remark','val','val1','amountval','amountval1','Remain','Remain1']"
+              >
+            
+              <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                              <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+            
+                            </span>
+                        </div>
+                    </ng-template>
+               <ng-template pTemplate="header">
+            
+                        <tr>       
+                            <th pSortableColumn="warehouses" style="width:20%">warehouses<p-sortIcon field="warehouses"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="warehouses" display="menu"></p-columnFilter>
+                                </div>
+                            </th>   
+                           <th pSortableColumn="Productcode" style="width:20%">Productcode<p-sortIcon field="Productcode"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                             <th pSortableColumn="Brand" style="width:20%">Brand  <p-sortIcon field="Brand"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="Pack" style="width:20%">Pack  <p-sortIcon field="Pack"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Pack" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="j" style="width:20%">Batch  <p-sortIcon field="j"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="j" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="Manufacturingdates" style="width:20%">Manufacturingdates  <p-sortIcon field="Manufacturingdates"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Manufacturingdates" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="Expirydate" style="width:20%">Expirydate  <p-sortIcon field="Expirydate"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Expirydate" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="r" style="width:20%">Storagelocation  <p-sortIcon field="r"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="r" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                          
+                          
+                            <th pSortableColumn="Remark" style="width:20%">Remark  <p-sortIcon field="Remark"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="val" style="width:20%">Quantity
+                                (Bag/Box) <p-sortIcon field="val"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="val" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="val1" style="width:20%">weight
+                                (Kg/Ltr)  <p-sortIcon field="val1"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="val1" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="amountval" style="width:20%">Quantity
+                                (Bag/Box)  <p-sortIcon field="amountval"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="amountval" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="amountval1" style="width:20%">weight<br>(Kg/Ltr)  <p-sortIcon field="amountval1"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="amountval1" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="Remain" style="width:20%">Remaining Quantity<br>(Bag/Box)  <p-sortIcon field="Remain"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Remain" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn="Remain1" style="width:20%">Remaining weight<br>(Kg/Ltr) <p-sortIcon field="Remain1"></p-sortIcon>
+                                <div class="flex align-items-center">
+                                    
+                                    <p-columnFilter type="text" field="Remain1" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>CSV -seletction only</th>
+                    </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td>{{ rowData.warehouses }}</td>
+                  <td>{{ rowData.Productcode }}</td>
+                  <td>{{ rowData.Brand }}</td>
+                  <td>{{ rowData.Pack }}</td>
+                  <td>{{ rowData.Batch}}</td>
+                  <td>{{ rowData.Manufacturingdates }}</td>
+                  <td>{{ rowData.Expirydate }}</td>
+                  <td>{{rowData.Storagelocation}}</td>
+                  <td>{{ rowData.Remark }}</td>
+                  <td>{{ rowData.inward_qty }}</td>
+                  <td>{{ rowData.inward_weight }}</td>
+                  <td>{{ rowData.out_qty }}</td>
+                  <td>{{ rowData.out_weight }}</td>
+                  <td>{{ rowData.remaining_qty }}</td>
+                  <td>{{ rowData.remaining_qty1 }}</td>
+                  <td><button type="button" pButton icon="pi pi-file" iconPos="left"   (click)="exportToCSV(rowData)" style="float:right"></button></td>
+                </tr>
+              </ng-template>
+            </p-table>
+            
+            <div class="card flex justify-content-center">
+                <p-button label="Show Grid All" (click)="showallgri();"></p-button>
+            </div>
+            </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,342 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+  <h1 >MATERIAL INWARD(SRN)</h1>
+</div>
+<div class="center-dropdown">
+  <p-dropdown [options]="cities" [(ngModel)]="selectedCity" (onChange)="onCityChange($event)" placeholder="Select Warehouses"></p-dropdown>
+</div>
+<div class="container">
+  <form [formGroup]="vehicleForm">
+   
+    <div *ngIf="vehicleForm.get('vehicleNumber').hasError('pattern')" class="error-message">
+      Vehicle number should consist of uppercase letters and digits only.
+    </div>
+  </form>
+</div>
+
+<br>
+
+<div class="container" *ngIf="warehosueselect">
+  <div class="panel-group" >
+    <div class="panel panel-primary">
+        <div class="panel-body">
+          <p-autoComplete
+  placeholder="Consignee Name"
+    [(ngModel)]="searchTerm"
+    (completeMethod)="search($event)"
+    [suggestions]="searchResults"
+    field="ConsigneeName"
+    [minLength]="3"
+    [forceSelection]="true"
+   
+    name="ConsigneeName"  formControlName="ConsigneeName"
+    (onSelect)="selectResult($event)"  
+   >
+  </p-autoComplete>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <p-autoComplete
+ placeholder="To Place"
+  [(ngModel)]="searchText1"
+  (completeMethod)="search1($event)"
+  [suggestions]="filteredResults1"
+  (onSelect)="fetchDataForReferenceDoNo($event,filteredResults1)"
+  [minLength]="4"
+  [forceSelection]="true"
+  field="DeliveryLocation" 
+  formControlName="DeliveryLocation"
+  >
+</p-autoComplete> 
+            <table class="table table-bordered">
+            <thead class="text text-primary">
+                  <tr>
+ 
+                      <th>Product Code</th>
+                      <th>Batch</th>
+                       <th>Mfg</th>
+                        <th>Exp</th>
+                         <th>Inward date</th>
+                          <th>Quantity(Box/Bags)</th>
+                           <th>Weight(Kg/Ltr)</th>
+                            <th>Invoice Number</th>
+                             <th>Remark</th>
+                              <th>Brand</th>
+                               <th>Pack</th>
+                                <th>Weight(Kg/Ltr)</th>
+                                 <th>UOM</th>
+                                  <th>Hsn Code</th>
+                                   <th>Storage Location</th>                   
+                              <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of rows; let i = index;">
+   <td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Productcode"  (input)="validateInput($event)" (ngModelChange)="getProductBrand(row.Productcode,i)"  type="text" >
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Batch" maxlength="11" type="text" />
+  </mat-form-field>
+</td>
+
+<td>
+  <mat-form-field class="example-form-field">
+    <mat-label>Choose mfg date</mat-label>
+    <input matInput [matDatepicker]="datepicker" [(ngModel)]="row.Manufacturingdates" readonly
+          >
+    
+    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <p-button mat-button matDatepickerCancel>Cancel</p-button>&nbsp;&nbsp;
+        <p-button mat-raised-button color="primary" matDatepickerApply>Apply</p-button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
+</td>
+
+                     <td>                                   
+<mat-form-field class="example-full-width">
+  <mat-label></mat-label>
+  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="M/D/YYYY" [(ngModel)]="row.Expirydate">
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+                    </td>
+
+                     <td>
+                       <mat-form-field class="example-full-width">
+  <mat-label>Choose in date</mat-label>
+  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" [(ngModel)]="row.InwardDate">
+ 
+  <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+                     </td>
+                     <td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Quantity"  (ngModelChange)="getqtypassweight(row.Quantity,row.Productcode,i,row.Packing,row.Batch,row.Brand,row.Result)"  (input)="validateInput($event)" type="text" />
+  </mat-form-field>
+
+
+
+                    <td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Weight" (input)="validateInput($event)"  type="text" />
+  </mat-form-field>
+</td>
+<td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Invoicequantity" (input)="validateInput($event)"  type="text" />
+  </mat-form-field> 
+</td>
+
+                     <td>
+                     <mat-form-field>
+                      <mat-label>Remark</mat-label>
+                      <mat-select disableRipple (selectionChange)="getremarkwisegrid(row.Remark, i,row.Quantity,row.Productcode,i,row.Packing,row.Batch,row.Brand,row.Result)" [(ngModel)]="row.Remark" >
+                        <mat-option value="SALABLE">Salable</mat-option>
+                        <mat-option value="DAMAGE">Damage</mat-option>
+                        <mat-option value="LEAKAGE">Leakage</mat-option>
+                         <mat-option value="UNSALABLE">Unsalable</mat-option>
+                        <mat-option value="QUARANTINE">Quarantine</mat-option>
+                        <mat-option value="LOOSE">Loose</mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                     </td>
+                     <td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Brand"  type="text" readonly />
+  </mat-form-field>
+</td>
+<td>
+  <mat-form-field appearance="fill">
+
+    <input matInput [(ngModel)]="row.Packing"  type="text" readonly />
+  </mat-form-field>
+</td>
+<td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.NetWeight"  type="text" readonly />
+  </mat-form-field>
+</td>
+<td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.UOM"  type="text" readonly />
+  </mat-form-field>
+</td>
+<td>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="row.Hsncode"  type="text" readonly />
+  </mat-form-field>
+</td>
+
+                     <td>
+                      <div>
+                        <p-button  (click)="showDialog(i, row.Remark,row.Quantity,row.Productcode,row.Packing,row.Batch,row.Brand,row.Result,copiedQuantity,totalQuantity,selectedCity)" icon="pi pi-external-link" label="Grid"  [disabled]="showDialogDisabled[i] || !row.Remark"></p-button>
+                    
+                        <p-dialog header="Show Grid Data" [(visible)]="visible" [maximizable]="true">
+                            <div class="card flex justify-content-center">
+                                <div class="grid">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <p-table
+                                                #dt1
+                                                [value]="albums"
+                                                dataKey="id"
+                                                styleClass="p-datatable-gridlines"
+                                                [rows]="10"
+                                                [showCurrentPageReport]="true"
+                                                [rowsPerPageOptions]="[5,10,15]"
+                                                [loading]="loading"
+                                                [paginator]="true"
+                                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                                [globalFilterFields]="['Storagelocation', 'Result', 'copiedQuantity', 'copiedWeight']">
+                                                <ng-template pTemplate="caption">
+                                                    <div class="flex">
+                                                        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                                                        <span class="p-input-icon-left ml-auto">
+                                                            <i class="pi pi-search"></i>
+                                                            <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+                                                        </span>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template pTemplate="header" >
+                                                    <tr>
+                                                        <th pSortableColumn="Storagelocation" style="width:20%">Grid Number <p-sortIcon field="Storagelocation"></p-sortIcon></th>
+                                                        <th pSortableColumn="Result" style="width:20%">Available Spaces In Boxes <p-sortIcon field="Result"></p-sortIcon></th>
+                                                        <th pSortableColumn="Box" style="width:20%">Box <p-sortIcon field="Box"></p-sortIcon></th>
+                                                        <th pSortableColumn="Kg/Ltr" style="width:20%">Kg/Ltr <p-sortIcon field="Kg/Ltr"></p-sortIcon></th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-album let-i="rowIndex" let-albums >
+                                                    <tr *ngIf="showGrid && row.Remark === 'DAMAGE'">
+                                                        <td>
+                                                            <input pInputText type="text" [(ngModel)]="albums.Gridno" placeholder="Grid Number" readonly />
+                                                        </td>
+                                                        <td>
+                                                            <input pInputText type="text" [(ngModel)]="album.Result" placeholder="Available Spaces In Boxes" readonly />
+                                                        </td>
+                                                        <td>
+                                                            <input pInputText type="text" [(ngModel)]="album.copiedQuantity"  (change)="fetchCopiedWeight(row.Productcode, i,album.copiedQuantity,totalQuantity);" (change)="calculateSum(album.copiedQuantity,i,rowIndex,album.Result,row.Quantity);" placeholder="Box" (input)="validateInput($event)"/>
+                                                        </td>
+                                                        <td>
+                                                            <input pInputText type="text" [(ngModel)]="album.copiedWeight2" placeholder="Kg/Ltr" (input)="validateInput($event)" readonly />
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="showGrid1 && row.Remark === 'LEAKAGE'">
+                                                      <td>
+                                                          <input pInputText type="text" [(ngModel)]="albums.Gridno" placeholder="Grid Number" readonly />
+                                                      </td>
+                                                      <td>
+                                                          <input pInputText type="text" [(ngModel)]="album.Result" placeholder="Available Spaces In Boxes" readonly />
+                                                      </td>
+                                                      <td>
+                                                          <input pInputText type="text" [(ngModel)]="album.copiedQuantity"  (change)="fetchCopiedWeight(row.Productcode, i,album.copiedQuantity,totalQuantity);" (change)="calculateSum(album.copiedQuantity,i,rowIndex,album.Result,row.Quantity);" placeholder="Box" (input)="validateInput($event)" />
+                                                      </td>
+                                                      <td>
+                                                          <input pInputText type="text" [(ngModel)]="album.copiedWeight3" placeholder="Kg/Ltr" (input)="validateInput($event)" readonly />
+                                                      </td>
+                                                  </tr>
+                                                  <tr *ngIf="showGrid2 && row.Quantity  && row.Remark === 'SALABLE'" >
+                                                    <td>
+                                                      <input pInputText type="text" [(ngModel)]="album.Storagelocation" readonly  />
+                                                    </td>
+                                                    <td>
+                                                      <input pInputText type="text" [(ngModel)]="album.Result" readonly />
+                                                    </td>
+                                                    <td>
+                                                      <input pInputText type="text" [(ngModel)]="album.copiedQuantity"    (input)="validateInput($event)"  (change)="fetchCopiedWeight(row.Productcode, i,album.copiedQuantity,totalQuantity);" (change)="calculateSum(album.copiedQuantity,i,rowIndex,album.Result,row.Quantity);" />
+                                                    </td>
+                                             
+                                                    <td>
+                                                      <input pInputText type="text" [(ngModel)]="copiedWeight1[i]" (input)="validateInput($event)" readonly />
+                                                    </td>
+                                                    
+                                                  </tr>
+                                                  
+                                                </ng-template>
+                                                <ng-template pTemplate="emptymessage">
+                                                    <tr>
+                                                        <td colspan="4">No Records found.</td>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="footer">
+                                                  <tr>
+                                                    <td colspan="2" class="text-right">Sum of Quantity and Sum of Weight</td>
+                                                    <td *ngIf="showGrid && totalQuantity > 0  && row.Remark === 'DAMAGE'">{{ totalQuantity | number:'1.0-0'  }}</td>
+                                                    <td *ngIf="showGrid && totalWeight2 > 0 && row.Remark === 'DAMAGE'">{{ totalWeight2}}</td>
+                                                    <td *ngIf="showGrid1 && totalQuantity > 0  && row.Remark === 'LEAKAGE'">{{ totalQuantity | number:'1.0-0' }}</td>
+                                                    <td *ngIf="showGrid1 && totalWeight2 > 0 && row.Remark === 'LEAKAGE'">{{ totalWeight2}}</td>
+                                                    <td *ngIf="showGrid2  && row.Remark === 'SALABLE'">{{ totalQuantity | number:'1.0-0' }}</td>
+                                                    <td *ngIf="showGrid2  && row.Remark === 'SALABLE'">{{ totalWeight}}</td>
+                                                     
+                                                  </tr>
+                                                </ng-template>
+                                                
+                                                
+
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12 text-center">
+                                <p-button label="Submit"  [disabled]="submitButtonDisabled" (click)="submit(row.Productcode,row.Batch,row.Weight,i,row.Invoicequantity,row.Remark,row.Brand,row.Packing,row.UOM,row.Hsncode, albums.Storagelocation,copiedWeight1)"></p-button>
+                            </div> -->
+                            
+                        </p-dialog>
+                      
+                    </div>
+                    
+                     </td>
+                  <td><p-button (click)="addRow()" mat-raised-button color="primary" style="cursor: pointer;" >Add</p-button></td>
+                     <td><p-button mat-raised-button color="primary"(click)="deleteRow(i)" style='cursor: pointer;'>Remove</p-button></td> 
+                    
+                 </tr>
+             </tbody>
+            </table>
+           
+        </div>
+    </div>
+    </div>
+</div>
+<br>
+<div class="col-md-12 text-center" *ngIf="warehosueselect">
+<!-- Place the Submit button outside of the ngFor loop -->
+<tr *ngFor="let row of rows; let i = index">
+
+    <!-- The condition checks if it's the first row to display the button -->
+    <td><p-button *ngIf="i === 0"   mat-raised-button color="primary"   (click)="submitAllRows(i,row.Remark,row.Quantity,row.Productcode,rowIndex,row.Packing,row.Batch,row.Brand,Result,copiedQuantity)" >Submit</p-button></td>
+  
+</tr>
+
+
+
+
+<p-button mat-raised-button color="primary" (click)="showreport()">Show Report</p-button>
+</div>
+<br>
+<br>
+<p-toast></p-toast>
+            <div class="container text-center" *ngIf="warehosueselect">
+  <form [formGroup]="form1"  enctype="multipart/form-data">
+    <div class="form-group">
+      <input type="file" (change)="uploadFile($event)">
+       <p-button mat-raised-button color="primary" (click)="submitImage()">Upload Excel</p-button>
+  
+    </div>
+  </form>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+

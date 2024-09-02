@@ -1,0 +1,124 @@
+<div class="layout-topbar"  style="background: black;" >
+    
+    <a class="layout-topbar-logo" >
+    
+        <span style="color: white;">Warehouse Management </span>
+    </a>
+
+    <button style="color: white;" #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars" style="color: white;"></i>
+    </button>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">    
+        <button style="color: white;"class="p-link layout-topbar-button">
+            <i class="pi pi-calendar"></i>
+            <span>Calendar</span>
+        </button>
+        <button class="p-link layout-topbar-button" style="color: white;">
+            <i class="pi pi-user"></i>
+            <span>Profile</span>
+        </button>
+        <button class="p-link layout-topbar-button"  style="color: white;">
+            <i class="pi pi-cog"></i>
+            <span>Settings</span>
+        </button>
+        <button class="p-link layout-topbar-button" label="Logout" (click)="logout()" style="color: white;">
+            <i class="pi pi-power-off"></i>
+            <span>logout</span>
+        </button>
+       
+    </div>
+
+    <p-avatar [matMenuTriggerFor]="menu" 
+  [image]="imageurl"
+  styleClass="mr-2 cursor-pointer"
+  size="large"
+  shape="circle" 
+></p-avatar>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <span>
+            <i class="pi pi-user"></i>&nbsp;&nbsp;
+
+            <p-avatar [matMenuTriggerFor]="menu" 
+            [image]="imageurl"
+            styleClass="mr-2 cursor-pointer"
+            size="large"
+            shape="circle" 
+          ></p-avatar>: {{ name }}
+          </span>
+          
+    </button>
+    
+    <button mat-menu-item >
+        <i class="pi pi-user-plus"></i>&nbsp;&nbsp;
+        <span>Full Name: {{ fullName }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-id-card"></i> &nbsp;&nbsp;
+        <span>Designation: {{ designation }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-building"></i>&nbsp;&nbsp;
+        <span>Depot: {{ depot }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-user"></i>&nbsp;&nbsp;
+        <span>Gender: {{ Gender }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-calendar"></i>&nbsp;&nbsp;
+        <span>Birth Date: {{ BirthDate }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-mobile mobile-icon"></i>&nbsp;&nbsp;
+        <span>Contact Number: {{ UserMobile }}</span>
+    </button>
+    <button mat-menu-item>
+        <i class="pi pi-envelope mail-icon"></i>&nbsp;&nbsp;
+        <span>Mail Id: {{ UserEmail }}</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+  </mat-menu> 
+  </div>
+<style>
+  .p-link layout-menu-button layout-topbar-button,i:hover{
+    background-color: black;
+}
+.profile-card {
+  display: block;
+  margin: 20px; /* Adjust the margin as needed */
+}
+
+.card {
+    
+  background-color: #ffffff; /* Card background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
+  padding: 20px; /* Padding inside the card */
+  transition: box-shadow 0.3s ease; /* Smooth transition for box shadow */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Box shadow on hover */
+}
+
+.card-content {
+  color: white;
+  /* Add additional styles for the card content here */
+}
+
+/* Add any other styling you need for profile-info-item */
+.profile-info-item {
+ color: black;
+}
+
+</style>

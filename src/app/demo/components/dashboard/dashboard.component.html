@@ -1,0 +1,145 @@
+<style>
+    .loading-spinner-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5); /* Optional: Adds a semi-transparent background */
+      z-index: 9999; /* Optional: Ensure the spinner appears on top of other content */
+    }
+    
+    .custom-loader .k-i-loading,
+    .custom-loader .k-i-loading path {
+      fill: black !important; /* Force the color to black */
+    }
+    
+    .k-i-loading {
+         
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         font-size: 80px;
+         background-color: rgba(255, 255, 255, 0.3);
+         color: rgb(83, 44, 188);
+         text-align: center;
+       }
+    
+    
+        </style>
+    <div class="loading-spinner-container" *ngIf="isLoading">
+        <div size="large" class="k-i-loading"></div>
+      </div>
+      
+    
+      
+    
+    <!-- Your existing dashboard content here -->
+    
+       <div class="grid">
+            <div class="col-12 lg:col-6 xl:col-2" (click)="productredirectToAnotherPage()" style="cursor: -webkit-grab; cursor: grab;width: 20%;">
+                <div class="card mb-0">
+                    <div class="flex justify-content-between mb-3">
+                        <div >
+                            <span class="block text-500 font-medium mb-3">PRODUCT STOCK</span>
+                            <div class="text-900 font-medium text-xl">{{productCount}}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                            <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-2" style="cursor: -webkit-grab; cursor: grab;width: 20%;" (click)="gridredirectToAnotherPage()">
+                <div class="card mb-0">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">GRID MASTER</span>
+                            <div class="text-900 font-medium text-xl"> {{gridCount}}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                            <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                        </div>
+                    </div>
+             
+                </div>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-2" style="cursor: -webkit-grab; cursor: grab;width: 20%;" (click)="redirectToAnotherPage()">
+                <div class="card mb-0">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3">INWARD STOCK</span>
+                            <div class="text-900 font-medium text-xl">   {{inwardCount}}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                            <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-2" style="cursor: -webkit-grab; cursor: grab;width: 20%;" (click)="rootredirectToAnotherPage()">
+                <div class="card mb-0">
+                    <div class="flex justify-content-between mb-3" >
+                        <div>
+                            <span class="block text-500 font-medium mb-3">OUTWARD STOCK</span>
+                            <div class="text-900 font-medium text-xl">   {{rootCount}}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                            <i class="pi pi-comment text-purple-500 text-xl"></i>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="col-12 lg:col-6 xl:col-2" style="cursor: -webkit-grab; cursor: grab;width: 20%;" (click)="outwardforexcel()">
+                <div class="card mb-0">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-500 font-medium mb-3" style="white-space: nowrap;">OUTWARD STOCK EXCEL</span>
+                            <div class="text-900 font-medium text-xl">{{outwardcount}}</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                            <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+    
+            <div class="col-12 xl:col-6">
+                <div class="card">
+                    <h3>WAREHOUSE TOP 10 PRODUCTS</h3>
+    <p-chart type="polarArea" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}" ></p-chart>
+    
+    
+    
+    
+    
+                </div>
+               
+            </div>
+    
+            <div class="col-12 xl:col-6">
+                <div class="card">
+                    <h3>SALES OVERVIEW BRAND WISE</h3>
+                    <p-chart type="line" [data]="chartData" [options]="chartOptions" [style]="{'width': '100%'}"></p-chart>
+                </div>
+    
+              
+                <div class="col-12 xl:col-12">
+                    <div class="card">
+                        <h3>SALES OVERVIEW DATE WISE</h3>
+                        <p-chart type="line" [data]="chartData1" ></p-chart>
+                    </div>
+              
+        </div>
+    </div>
+    
+    

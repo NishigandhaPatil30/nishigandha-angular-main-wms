@@ -1,0 +1,103 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >WAREHOUSE MASTER</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="600px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:100%;" >
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Client Code</mat-label>
+            <input matInput placeholder="Clientcode" name="Clientcode"  formControlName="Clientcode"  required >
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Client Name</mat-label>
+            <input matInput placeholder="Client Name" name="ClientName"  formControlName="ClientName" required >
+            <mat-error *ngIf="addForm.get('ClientName').hasError('pattern')">Only characters are allowed.</mat-error>
+            <mat-error *ngIf="addForm.get('ClientName').hasError('required')">Client Name is required.</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>GST Number</mat-label>
+            <input matInput placeholder="GST Number" name="GSTNumber" formControlName="GSTNumber"  maxlength="15" required>
+          </mat-form-field>
+    
+  
+           <mat-form-field appearance="fill" class="width-50 ml-4" >
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="PhoneNumber"formControlName="PhoneNumber" name="PhoneNumber" required>
+            <mat-error *ngIf="addForm.get('PhoneNumber').hasError('required')">PhoneNumber  is required</mat-error>
+            <mat-error *ngIf="addForm.get('PhoneNumber').hasError('pattern')">Invalid mobile number</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Warehouse Code</mat-label>
+            <input matInput  placeholder="Warehouse Code" name="WarehouseCode"formControlName="WarehouseCode" required>
+          </mat-form-field>
+       
+           <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Warehouse Address</mat-label>
+            <input matInput placeholder="Warehouse Address" name="WarehouseAddress" formControlName="WarehouseAddress" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Warehouse Length</mat-label>
+            <input matInput placeholder="Warehouse Length" name="WarehouseLength" formControlName="WarehouseLength" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+          </mat-form-field>
+       
+           <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Warehouse Width</mat-label>
+            <input matInput placeholder="Warehouse Width" name="WarehouseWidth" formControlName="WarehouseWidth" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Warehouse Location</mat-label>
+            <input matInput placeholder="Warehouse Location" formControlName="WarehouseLocation" name="WarehouseLocation"  oninput="this. value = this. value. toUpperCase()"required>
+          </mat-form-field>
+  
+           <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Opertional Gate</mat-label>
+            <input matInput placeholder="Opertional Gate" formControlName="OpertionalGate" name="OpertionalGate" oninput="this. value = this. value. toUpperCase()"  required>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Emergency Gate</mat-label>
+            <input matInput placeholder="Emergency Gate" formControlName="EmergencyGate" name="EmergencyGate" required>
+          </mat-form-field>
+  
+           <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Warehouse Longitude</mat-label>
+            <input matInput placeholder="Warehouse Longitude" formControlName="WarehouseLongitude" name="WarehouseLongitude" required>
+          </mat-form-field>
+  
+           <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Warehouse Latitude</mat-label>
+            <input matInput placeholder="Warehouse Latitude" formControlName="WarehouseLatitude" name="WarehouseLatitude" required>
+          </mat-form-field>
+  
+          <div class="col-md-9 text-center">
+            <p-button mat-raised-button color="primary" (click)="onSubmit()">Submit</p-button>&nbsp;&nbsp;&nbsp;
+            <p-button mat-raised-button color="primary" (click)="showreport()">Show Report</p-button>
+          </div>
+      <br>
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  <p-toast></p-toast>
+       <div class="container text-center" >
+    <form [formGroup]="form1" >
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+        <button pButton type="button" (click)="submitImage()">Upload Excel</button>
+    
+      </div>
+    </form>
+          </div>
+          </div>
+          </div>
+          </div>

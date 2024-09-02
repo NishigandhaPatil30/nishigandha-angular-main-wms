@@ -1,0 +1,35 @@
+<div class="container" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; padding: 20px;">
+    <h1 style="text-align: center;">View LR Number</h1>
+    <div style="text-align: center;">
+        <h4 style="font-size: 18px;">Successfully Generated LR Number:</h4>
+        <h1 style="color: green; font-size: 32px;"><b>{{ lrNumber }}</b></h1>
+    </div>
+    <div style="text-align: center;">
+        <p-button style="padding: 10px 20px; margin-top: 20px; display: block; width: 100%;" (click)="lrnoprint()">Print</p-button>
+        <h1 style="color: #2196F3; margin-top: 10px; font-size: 24px; cursor: pointer;" (click)="goToOtherComponent()">Create LR</h1>
+    </div>
+</div>
+
+<style>
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 16px;
+        }
+        h1[color="green"] {
+            font-size: 28px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        h1[color="#2196F3"] {
+            font-size: 20px;
+        }
+    }
+</style>

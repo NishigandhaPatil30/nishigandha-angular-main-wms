@@ -1,0 +1,124 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div class="container text-center">
+    <h1>CLIENT MASTER REPORT</h1>
+</div>
+<mat-form-field style="  font-size: 14px;
+  width: 100%;">
+  <mat-label>Filter All</mat-label>
+  <input  matInput (keyup)="applyFilter($event)" placeholder="Search Username" #input>
+</mat-form-field>
+
+<button pButton type="button" (click)="exporter.exportTable('csv')" label="Export to CSV" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('xlsx')" label="Export to Excel" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('json')" label="Export to JSON" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('txt')" label="Export to Text" class="p-button-primary"></button>
+<br>
+<br>   
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" acceptLabel="Yes" rejectLabel="No"></p-confirmDialog>
+  <p-toast></p-toast>
+<div class="mat-elevation-z8">
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+ 
+  <table mat-table matTableExporter  [dataSource]="dataSource" #exporter="matTableExporter" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="id" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Username">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.Username}} </td>
+    </ng-container>
+
+       <ng-container matColumnDef="Password">
+      <th mat-header-cell *matHeaderCellDef> Password </th>
+      <td mat-cell *matCellDef="let element"> {{element.Password}} </td>
+    </ng-container>
+   
+     <ng-container matColumnDef="ClientName">
+      <th mat-header-cell *matHeaderCellDef> Client Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.ClientName}} </td>
+    </ng-container>
+        
+     <ng-container matColumnDef="ContactPersonName">
+      <th mat-header-cell *matHeaderCellDef> Contact PersonName </th>
+      <td mat-cell *matCellDef="let element"> {{element.ContactPersonName}} </td>
+    </ng-container>
+   
+   <ng-container matColumnDef="MobileNumber">
+      <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.MobileNumber}} </td>
+    </ng-container>
+     <ng-container matColumnDef="MailId">
+      <th mat-header-cell *matHeaderCellDef> MailId </th>
+      <td mat-cell *matCellDef="let element"> {{element.MailId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Industry">
+      <th mat-header-cell *matHeaderCellDef> Industry </th>
+      <td mat-cell *matCellDef="let element"> {{element.Industry}} </td>
+    </ng-container>
+      <ng-container matColumnDef="Address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+    </ng-container>
+      <ng-container matColumnDef="PinCode">
+      <th mat-header-cell *matHeaderCellDef> Pin Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.PinCode}} </td>
+    </ng-container>
+
+      <ng-container matColumnDef="GSTNumber">
+      <th mat-header-cell *matHeaderCellDef>GST Number</th>
+      <td mat-cell *matCellDef="let element"> {{element.GSTNumber}} </td>
+    </ng-container>
+          <ng-container matColumnDef="BillingCity">
+      <th mat-header-cell *matHeaderCellDef>Billing City</th>
+      <td mat-cell *matCellDef="let element"> {{element.BillingCity}} </td>
+    </ng-container>
+         <ng-container matColumnDef="ClientLocation">
+      <th mat-header-cell *matHeaderCellDef>Client Location</th>
+      <td mat-cell *matCellDef="let element"> {{element.ClientLocation}} </td>
+    </ng-container>
+   <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element"  >   
+         <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary" (click)="navigateToEdit(element)" aria-label="Example icon button with a delete icon">
+          <mat-icon>launch</mat-icon>
+
+        </button>
+      </td>
+    </ng-container>
+   
+ <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element"  >   
+         <button mat-icon-button color="primary" (click)="delete(element)" class="iconbutton"
+                color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef colspan="6">loading data......</mat-footer-cell>
+   
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+  </table>
+
+  <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" 
+    [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+  </mat-paginator>
+
+</div>
+</section>
+</div>
+</div>
+</div>

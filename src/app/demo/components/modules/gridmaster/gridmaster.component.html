@@ -1,0 +1,88 @@
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<div style="text-align: center;">
+    <h1 >GRID MASTER</h1>
+  </div>
+  <form [formGroup]="addForm" novalidate class="form">
+  <mat-grid-list cols="1" rowHeight="400px">
+    <mat-grid-tile>
+        <div class="example-container" style="width:100%;" >
+          <p-autoComplete
+          placeholder="Client Code"
+          [(ngModel)]="searchText"
+          (completeMethod)="search()"
+          [suggestions]="filteredResults"
+          (onSelect)="getWarehouseCode($event.value)"
+          [minLength]="1"
+          [forceSelection]="true"
+          [style.width.px]="50"
+          name="ClientCode"  formControlName="ClientCode"
+          (ngModelChange)="getWarehouseCode(ClientCode)"
+        >
+        </p-autoComplete>
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+         <br>  <br>
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Warehause Code</mat-label>
+            <input matInput placeholder="Warehause Code" name="Warehauseno"   formControlName="Warehauseno" required>
+          </mat-form-field>
+      
+  
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Grid Name</mat-label>
+            <input matInput placeholder="Grid Name" name="Grid" formControlName="Grid" required>
+          </mat-form-field>
+      
+  
+           <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Length</mat-label>
+            <input matInput placeholder="Length"formControlName="Locationlenght" name="Locationlenght" (ngModelChange)="calculateResult1()"required>
+            <mat-error *ngIf="addForm.get('Locationlenght').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+           <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Height</mat-label>
+            <input matInput placeholder="Locationheight" name="Locationheight" formControlName="Locationheight" (ngModelChange)="calculateResult1()" required>
+            <mat-error *ngIf="addForm.get('Locationheight').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="width-50 ">
+            <mat-label>Width</mat-label>
+            <input matInput  placeholder="Width" name="Locationwidth"formControlName="Locationwidth" (ngModelChange)="calculateResult1()"required>
+            <mat-error *ngIf="addForm.get('Locationwidth').hasError('pattern')">Please enter a valid number.</mat-error>
+          </mat-form-field>  
+          <mat-form-field appearance="fill" class="width-50 ml-4">
+            <mat-label>Cubic Feet</mat-label>
+            <input matInput placeholder="Cubic Feet" name="Result" formControlName="Result" [value]="multiplicationResult1" required readonly>
+          </mat-form-field>
+         
+  
+          <div class="col-md-12 text-center">
+            <p-button  (click)="onSubmit()">Submit</p-button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <p-button  (click)="showreport()">Show Report</p-button>
+          </div>
+      
+          </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  <p-toast></p-toast>
+     <div class="container text-center" >
+  
+    <form [formGroup]="form1" (ngSubmit)="submitImage()">
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+         <p-button  (click)="submitImage()">Upload Excel</p-button>
+    
+      </div>
+    </form>
+          </div>
+          </div>
+          </div>
+          </div>

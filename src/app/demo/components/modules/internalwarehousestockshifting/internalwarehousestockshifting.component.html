@@ -1,0 +1,115 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h1 style="text-align:center;">INTERNAL WAREHOUE STOCK SHIFTING</h1>
+<p-toast></p-toast>
+<div class="center-dropdown" style="text-align: center;">
+  <p-dropdown [options]="cities" [(ngModel)]="selectedCity" (onChange)="onCityChange($event)" placeholder="Select Warehouses"></p-dropdown>
+</div>
+<div class="example-container " *ngIf="warehosueselect">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="Productcode">
+      <th mat-header-cell *matHeaderCellDef>Productcode</th>
+      <td mat-cell *matCellDef="let product">
+          <mat-form-field>
+        <input matInput type="text" (change)="onInputChange(product)" (input)="validateInput($event)" [(ngModel)]="product.Productcode"  required />
+      </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Batch">
+      <th mat-header-cell *matHeaderCellDef>Batch</th>
+      <td mat-cell *matCellDef="let product">
+          <mat-form-field>
+        <input matInput type="text" (change)="onInputChange(product)" [(ngModel)]="product.Batch" />
+      </mat-form-field>
+      </td>
+    </ng-container>
+
+<ng-container matColumnDef="From Grid">
+  <th mat-header-cell *matHeaderCellDef>From Grid</th>
+  <td mat-cell *matCellDef="let product">
+    <mat-form-field>
+      <mat-label>Select a From Grid</mat-label>
+      <mat-select [(ngModel)]="product.selectedStorageLocation" (selectionChange)="onInputChange(product)">
+        <mat-option *ngFor="let location of product.productTransferStorageLocations" [value]="location">{{ location }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </td>
+</ng-container>
+
+<ng-container matColumnDef="To Grid">
+  <th mat-header-cell *matHeaderCellDef>To Grid</th>
+  <td mat-cell *matCellDef="let product">
+    <mat-form-field>
+      <mat-label>Select a To Grid</mat-label>
+      <mat-select [(ngModel)]="product.Gridnonew1" (selectionChange)="onInputChange(product)">
+        <mat-option *ngFor="let location of product.gridTransferStorageLocations" [value]="location" [disabled]="location === product.selectedStorageLocation">{{ location }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </td>
+</ng-container>
+
+
+
+  <ng-container matColumnDef="Quantity">
+  <th mat-header-cell *matHeaderCellDef>Quantity</th>
+  <td mat-cell *matCellDef="let product">
+    <mat-form-field>
+      <input matInput type="text" (change)="getGridCubicFeet(product.Productcode, product.selectedStorageLocation,product.Quantity)" (input)="validateInput($event)"  [(ngModel)]="product.Quantity" />
+    </mat-form-field>
+  </td>
+</ng-container>
+      <ng-container matColumnDef="NetWeight">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let product">
+          <mat-form-field> 
+        <input matInput type="text" (input)="validateInput($event)"  [(ngModel)]="product.NetWeight" />
+      </mat-form-field>
+      </td>
+    </ng-container>
+      
+     
+
+    <ng-container matColumnDef="addButton" >
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <p-button mat-raised-button color="primary" class="p-ripple" (click)="addRow()">Add Row</p-button>
+      </td>
+    </ng-container>
+
+    <!-- Separate column for delete buttons in rows -->
+    <ng-container matColumnDef="deleteButton">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <p-button mat-icon-button color="warn" class="p-ripple" (click)="removeRow(i)">
+          <mat-icon>clear</mat-icon>
+        </p-button>
+      </td>
+      
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+<br>
+ <div class="col-md-12 text-center" *ngIf="warehosueselect">
+  <p-button (click)="onSubmit()">Submit</p-button >&nbsp;&nbsp;&nbsp;&nbsp;
+  <p-button  (click)="showreport()">Show Report</p-button >
+  
+</div>
+</div>
+</div>
+</div>
+ <!-- <div class="container" style="    position: absolute;
+ top: 204px;
+ left: 262px;">
+  <form [formGroup]="form1" (ngSubmit)="submitImage()">
+    <div class="form-group">
+      <input type="file" (change)="uploadFile($event)">
+       <button mat-raised-button color="primary" >Upload Excel</button> 
+    </div> -->
+ 
+     

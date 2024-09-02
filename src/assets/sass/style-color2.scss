@@ -1,0 +1,142 @@
+
+/*-------------------
+Sample CSS overwriting main.css rules
+
+[Table of contents]
+    1. Typography
+    2. Page cover behavior on scroll 
+[Colors]
+    Dark blue : rgba(16, 25, 35, 0.9);
+[Typography]
+    font-family :
+    - Serif : "Playfair Display"
+*/
+@import "variables";
+
+/* 1. Typography */
+// typography
+/* page header */
+.page-header-alpha .navbar-mainmenu .nav-item{
+    font-family: $geo;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.section-title .title{
+    font-family: $geo;
+    text-transform: none;
+}
+/* title */
+.display-title,
+.section-home h1,
+.section-home h2,
+.media-service h4,
+.section-content h2,
+.section-content h3{
+    font-family: $geo;
+}
+/* small text */
+.page-header-alpha .navbar-topmenu .navbar-nav-menu .nav-item,
+.scrolldown a,
+.btn-outline-white,
+.btn-outline-black,
+.display-subtitle,
+.display-condensed,
+.btn-divided .b-title
+{
+    font-family: $geo;
+}
+/* small text */
+.page-header-alpha .navbar-topmenu .navbar-nav-menu .nav-item,
+.scrolldown a,
+.btn-outline-white,
+.btn-outline-black,
+.display-subtitle,
+.display-condensed,
+.btn-divided .b-title
+{
+    font-family: $geo;
+}
+.page-header-alpha .navbar-mainmenu .nav-item{
+    font-family: $geo;
+    @media (min-width: $large-up) {
+        font-size: 4rem;
+    }
+
+}
+/* 2. Page cover behavior on scroll / .page-cover */ 
+.page-cover{
+    &:after{
+        content: "";
+        // background: linear-gradient(to left, #D1335B, #00152e);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        transition: 0.3s;
+        background-image:  $gradient-pink;
+        // @media (min-width: $large-up) {
+        //     left: 40px;
+        //     right: 40px;
+        //     bottom: 40px;
+        //     top: 40px;
+        // }
+    }
+    &.scrolled:after{
+        opacity: 0.5;
+    }
+}
+.section-register{
+    // border-top: 1px solid rgba(white, 0.2);
+    background: rgba(white, 0.05);
+}
+
+/* 3. Item page */
+.section-twoside{
+    .section-side.side-content{
+        background: rgba(16, 25, 35, 0.9);
+        color: $white;
+        .btn-outline-white,
+        .btn-outline-black{
+            color: currentColor;
+            border-color: currentColor;
+        }
+    }
+}
+.section-title.decor{
+    position: relative;
+    &::before{
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        $size: 420px;
+        width: $size;
+        height: $size;
+        margin-left: -$size / 2;
+        margin-top: -$size / 2;
+        border: 1px solid rgba(white, 0.2);
+        // background: rgba(white,0.2);
+        border-radius: 500px;
+        z-index: -1;
+    }
+    &::after{
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        $size: 420px-96px;
+        width: $size;
+        height: $size;
+        margin-left: -$size / 2;
+        margin-top: -$size / 2;
+        border: 1px solid rgba(white, 0.2);
+        // background: rgba(white,0.1);
+        border-radius: 500px;
+        z-index: -1;
+    }
+}
+
+/* 4. Animation */
+@import 'section/section-anim';

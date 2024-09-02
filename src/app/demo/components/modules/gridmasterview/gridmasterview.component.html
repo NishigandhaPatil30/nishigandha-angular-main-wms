@@ -1,0 +1,100 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<mat-form-field style="  font-size: 14px;
+  width: 100%;">
+  <mat-label>Filter All</mat-label>
+  <input  matInput (keyup)="applyFilter($event)" placeholder="Search Username" #input>
+</mat-form-field>
+ 
+<button pButton type="button" (click)="exporter.exportTable('csv')" label="Export to CSV" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('xlsx')" label="Export to Excel" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('json')" label="Export to JSON" class="p-button-primary"></button>&nbsp;&nbsp;&nbsp;
+<button pButton type="button" (click)="exporter.exportTable('txt')" label="Export to Text" class="p-button-primary"></button>
+<br>
+<br>  
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" acceptLabel="Yes" rejectLabel="No"></p-confirmDialog>
+  <p-toast></p-toast>
+<div class="mat-elevation-z8">
+ 
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  <table mat-table matTableExporter  [dataSource]="dataSource" #exporter="matTableExporter" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="Id" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+ <ng-container matColumnDef="Client code" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Client code </th>
+      <td mat-cell *matCellDef="let element"> {{element.Clientcode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Warehause no">
+      <th mat-header-cell *matHeaderCellDef> Warehause no </th>
+      <td mat-cell *matCellDef="let element"> {{element.Warehauseno}} </td>
+    </ng-container>
+       <ng-container matColumnDef="Grid">
+      <th mat-header-cell *matHeaderCellDef> Grid </th>
+      <td mat-cell *matCellDef="let element"> {{element.Grid}} </td>
+    </ng-container>
+   
+     <ng-container matColumnDef="Locationlenght(feet)">
+      <th mat-header-cell *matHeaderCellDef> Locationlenght(feet)</th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationlenght}} </td>
+    </ng-container>
+        
+     <ng-container matColumnDef="Locationwidth(feet)">
+      <th mat-header-cell *matHeaderCellDef> Locationwidth(feet) </th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationwidth}} </td>
+    </ng-container>
+   
+   <ng-container matColumnDef="Locationheight(feet)">
+      <th mat-header-cell *matHeaderCellDef> Locationheight(feet) </th>
+      <td mat-cell *matCellDef="let element"> {{element.Locationheight}} </td>
+    </ng-container>
+     <ng-container matColumnDef="Cubic Feet">
+      <th mat-header-cell *matHeaderCellDef> Cubic Feet </th>
+      <td mat-cell *matCellDef="let element"> {{element.Result}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Box Available Space">
+      <th mat-header-cell *matHeaderCellDef> Box Available Space </th>
+      <td mat-cell *matCellDef="let element"> {{element.Boxnos}} </td>
+    </ng-container>
+      <ng-container matColumnDef="Grid Margin">
+      <th mat-header-cell *matHeaderCellDef> Grid Margin </th>
+      <td mat-cell *matCellDef="let element"> {{element.Margin}} </td>
+    </ng-container>
+  
+   <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element" >   
+         <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary"  (click)="navigateToEdit(element)" aria-label="Example icon button with a delete icon">
+          <mat-icon>launch</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+ <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element"  >   
+         <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary" (click)="delete(element)"  aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" 
+    [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+  </mat-paginator>
+
+</div>
+</section>
+</div>
+</div>
+</div>

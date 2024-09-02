@@ -1,0 +1,371 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+<h2 style="text-align: center;">TOTALWAREHOUSE STCOK REPORT</h2>
+<div class="print-button-container">
+  <button pButton type="button" icon="pi pi-print" (click)="printTable()"></button>
+</div>
+<br><br>
+<div class="ui-helper-clearfix" style="text-align: left" *ngIf="isLoading1">
+  <button type="button" pButton icon="pi pi-file-o" iconPos="left"  label="CSV" (click)="exportToExcel()" style="margin-right: 0.5em;"></button>
+  <button type="button" pButton icon="pi pi-file-excel" iconPos="left" (click)="exportToExcel()" label="EXCEL"  style="margin-right: 0.5em;" class="ui-button-success"></button>
+
+</div>
+<br>
+<p-table [value]="data"
+[loading]="isLoading"
+ #dt1 [rowHover]="true" 
+        [value]="data"
+        dataKey="id"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,15,30]" 
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="10"
+  [globalFilterFields]="['ONE', 'Productcode', 'Hsncode','Brand','Packingsize','Subunit','NetWeight','Grossweight','Aliseproductname','Technicalname','Productlenght','Productwidth','Productheight','Productcubic','UOM','Packing'
+  ,'Remark','Id','Clientcode','Warehauseno','Grid','Locationlenght','Locationwidth','Locationheight','Locationheight','Result','Boxnos','Margin','TotalAvailable','Two','Productcode',
+  'Hsncode','Brand','Packingsize','Subunit','NetWeight','Grossweight','Aliseproductname','Technicalname','Productlenght','Productwidth','Productheight',
+  'Productcubic','UOM','Packing','Remark'
+  ,'vehiclenumber']"
+  >
+
+  <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                  <input pInputText type="text" #inputRef placeholder="Search keyword" (input)="dt1.filterGlobal(inputRef.value, 'contains')" />
+
+                </span>
+            </div>
+        </ng-template>
+   <ng-template pTemplate="header">
+
+            <tr>          
+                 <th pSortableColumn="ONE" style="width:20%">Id<p-sortIcon field="ONE"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="ONE" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+               <th pSortableColumn="Productcode" style="width:20%">Productcode<p-sortIcon field="Productcode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Hsncode" style="width:20%">Hsncode  <p-sortIcon field="Hsncode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Hsncode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Brand" style="width:20%">Brand  <p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Packingsize" style="width:20%">Packingsize  <p-sortIcon field="Packingsize"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Packingsize" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="Subunit" style="width:20%">Subunit  <p-sortIcon field="Subunit"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Subunit" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="NetWeight" style="width:20%">NetWeight  <p-sortIcon field="NetWeight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="NetWeight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+<th pSortableColumn="Grossweight" style="width:20%">Grossweight<p-sortIcon field="Grossweight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Grossweight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+ <th pSortableColumn="Aliseproductname" style="width:20%">Aliseproductname<p-sortIcon field="Aliseproductname"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Aliseproductname" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                 <th pSortableColumn="Technicalname" style="width:20%">Technicalname<p-sortIcon field="Technicalname"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Technicalname" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productlenght" style="width:20%">Productlenght<p-sortIcon field="Productlenght"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productlenght" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productwidth" style="width:20%">Productwidth<p-sortIcon field="Productwidth"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productwidth" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productheight" style="width:20%">Productheight<p-sortIcon field="Productheight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productheight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productcubic" style="width:20%">Productcubic<p-sortIcon field="Productcubic"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcubic" display="menu"></p-columnFilter>
+                    </div>
+                </th>            
+                <th pSortableColumn="UOM" style="width:20%">UOM<p-sortIcon field="UOM"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="UOM" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Packing" style="width:20%">Packing<p-sortIcon field="Packing"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Packing" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Remark" style="width:20%">Remark<p-sortIcon field="Remark"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Id" style="width:20%">Id<p-sortIcon field="Id"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Id" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Clientcode" style="width:20%">Clientcode<p-sortIcon field="Clientcode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Clientcode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Warehauseno" style="width:20%">Warehauseno<p-sortIcon field="Warehauseno"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Warehauseno" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Grid" style="width:20%">Grid<p-sortIcon field="Grid"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Grid" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Locationlenght" style="width:20%">Locationlenght<p-sortIcon field="Locationlenght"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Locationlenght" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Locationwidth" style="width:20%">Locationwidth<p-sortIcon field="Locationwidth"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Locationwidth" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Locationheight" style="width:20%">Locationheight<p-sortIcon field="Locationheight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Locationheight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Result" style="width:20%">Result<p-sortIcon field="Result"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Result" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Boxnos" style="width:20%">Boxnos<p-sortIcon field="Boxnos"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Boxnos" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Margin" style="width:20%">Margin<p-sortIcon field="Margin"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Margin" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="TotalAvailable" style="width:20%">TotalAvailable<p-sortIcon field="TotalAvailable"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="TotalAvailable" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Two" style="width:20%">Id<p-sortIcon field="Two"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Two" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productcode" style="width:20%">Productcode<p-sortIcon field="Productcode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Hsncode" style="width:20%">Hsncode<p-sortIcon field="Hsncode"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Hsncode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Brand" style="width:20%">Brand<p-sortIcon field="Brand"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Brand" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Packingsize" style="width:20%">Packingsize<p-sortIcon field="Packingsize"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Packingsize" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Subunit" style="width:20%">Subunit<p-sortIcon field="Subunit"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Subunit" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="NetWeight" style="width:20%">NetWeight<p-sortIcon field="NetWeight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="NetWeight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Grossweight" style="width:20%">Grossweight<p-sortIcon field="Grossweight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Grossweight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Aliseproductname" style="width:20%">Aliseproductname<p-sortIcon field="Aliseproductname"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Aliseproductname" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Technicalname" style="width:20%">Technicalname<p-sortIcon field="Technicalname"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Technicalname" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productlenght" style="width:20%">Productlenght<p-sortIcon field="Productlenght"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productlenght" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productwidth" style="width:20%">Productwidth<p-sortIcon field="Productwidth"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productwidth" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productheight" style="width:20%">Productheight<p-sortIcon field="Productheight"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productheight" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Productcubic" style="width:20%">Productcubic<p-sortIcon field="Productcubic"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Productcubic" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="UOM" style="width:20%">UOM<p-sortIcon field="UOM"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="UOM" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Packing" style="width:20%">Packing<p-sortIcon field="Packing"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Packing" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="Remark" style="width:20%">Remark<p-sortIcon field="Remark"></p-sortIcon>
+                    <div class="flex align-items-center">
+                        
+                        <p-columnFilter type="text" field="Remark" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+        </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{ rowData.ONE }}</td>
+      <td>{{ rowData.Productcode }}</td>
+      <td>{{ rowData.Hsncode }}</td>
+      <td>{{ rowData.Brand }}</td>
+      <td>{{ rowData.Packingsize }}</td>
+      <td>{{ rowData.Subunit }}</td>
+      <td>{{ rowData.NetWeight }}</td>
+      <td>{{ rowData.Grossweight }}</td>
+      <td>{{ rowData.Aliseproductname }}</td>
+      <td>{{ rowData.Technicalname }}</td>
+      <td>{{ rowData.Productlenght }}</td>
+      <td>{{ rowData.Productwidth }}</td>
+      <td>{{ rowData.Productheight }}</td>
+      <td>{{ rowData.Productcubic }}</td>
+      <td>{{ rowData.UOM }}</td>
+      <td>{{ rowData.Packing }}</td>
+      <td>{{ rowData.Remark }}</td>
+      <td>{{ rowData.Id }}</td>
+      <td>{{ rowData.Clientcode }}</td>
+      <td>{{ rowData.Warehauseno }}</td>
+      <td>{{ rowData.Grid }}</td>
+      <td>{{ rowData.Locationlenght }}</td>
+      <td>{{ rowData.Locationwidth }}</td>
+      <td>{{ rowData.Locationheight }}</td>
+      <td>{{ rowData.Result }}</td>
+      <td>{{ rowData.Boxnos }}</td>
+      <td>{{ rowData.Margin }}</td>
+      <td>{{ rowData.TotalAvailable }}</td>
+      <td>{{ rowData.Two }}</td>
+      <td>{{ rowData.Productcode }}</td>
+      <td>{{ rowData.Hsncode }}</td>
+      <td>{{ rowData.Packingsize }}</td>
+      <td>{{ rowData.Subunit }}</td>
+      <td>{{ rowData.NetWeight }}</td>
+      <td>{{ rowData.Grossweight }}</td>
+      <td>{{ rowData.Aliseproductname }}</td>
+      <td>{{ rowData.Technicalname }}</td>
+      <td>{{ rowData.Productlenght }}</td>
+      <td>{{ rowData.Productwidth }}</td>
+      <td>{{ rowData.Productheight }}</td>
+      <td>{{ rowData.Productcubic }}</td>
+      <td>{{ rowData.UOM }}</td>
+      <td>{{ rowData.Packing }}</td>
+      <td>{{ rowData.Remark }}</td>
+      <td>{{ rowData.Remark }}</td>
+
+    </tr>
+  </ng-template>
+
+</p-table>
+</div>
+</div>
+</div>
